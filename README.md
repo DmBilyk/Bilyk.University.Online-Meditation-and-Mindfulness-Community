@@ -6,7 +6,7 @@ https://exampleproject.azurewebsites.net
 ## Author
 Dmytro Bilyk
 
-dmbilyk3861@gmail.com
+fdmbilyk3861@gmail.com
 
 https://t.me/@lkjhg13
 
