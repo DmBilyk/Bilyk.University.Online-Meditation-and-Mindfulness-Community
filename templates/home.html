@@ -1,4 +1,7 @@
 {% load static %}
+{% load socialaccount %}
+{% include 'navbar.html' %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,12 +14,18 @@
 </head>
 <body>
 
-    {% include 'navbar.html' %}
-
 
             <div class="translucent-block">
         <div class="main-text">
             <h1>Main Heading</h1>
+<!--                <button class="btn btn-outline-info">-->
+<!--        <a href="{% provider_login_url 'google'%}?next=/">-->
+<!--            <i class="fab fa-google"></i>-->
+<!--            Login with Google-->
+<!--        </a>-->
+<!--    </button>-->
+
+
                     <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non libero lorem. Nunc vitae nunc et justo tristique consectetur. Mauris consectetur feugiat lorem. Duis at odio in ligula congue feugiat. Suspendisse potenti. Nam a turpis at enim elementum malesuada. Phasellus volutpat lorem nec leo auctor malesuada. Fusce eu felis at quam pharetra vestibulum in ut lacus. Integer vel ultricies felis, id laoreet metus. Curabitur condimentum, ligula vitae bibendum ultricies, elit libero porta ipsum, a eleifend ligula dolor eu libero. Nulla facilisi. Vestibulum feugiat vestibulum nisl. Integer eleifend lorem eget ante sollicitudin, et interdum tellus accumsan. Vivamus accumsan in velit a aliquam. Nullam non efficitur eros, vitae consectetur ligula.
         </p>
@@ -32,5 +41,8 @@
   <footer>
     <span>StyleSheet (C) All rights Reserved</span> <!-- Copyright information -->
   </footer>
+
+
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

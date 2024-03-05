@@ -1,7 +1,7 @@
-<div class="container teal borderYtoX">
-  <a href="/">HOME</a>
-  <a href="#">ARTICLES</a>
-  <a href="#">PORTFOLIO</a>
-  <a href="#">ABOUT</a>
-  <a href="#">CONTACT</a>
+{% load socialaccount %}
+
+<div id="navbar" class="teal borderYtoX ">
+  <a href="/" class="animated-link">HOME</a>
+  <a href="#" class="animated-link">ABOUT</a>
+  <a href="{% provider_login_url 'google'%}?next=/" class="animated-link">LOGIN WITH GOOGLE</a>
 </div>
