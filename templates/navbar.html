@@ -1,7 +1,15 @@
 {% load socialaccount %}
 
-<div id="navbar" class="teal borderYtoX ">
+<div id="navbar" class="container teal borderYtoX">
   <a href="/" class="animated-link">HOME</a>
   <a href="#" class="animated-link">ABOUT</a>
-  <a href="{% provider_login_url 'google'%}?next=/" class="animated-link">LOGIN WITH GOOGLE</a>
+  {% if user.is_authenticated %}
+    <div class="profile-info">
+      <div class="profile-picture"></div>
+      <span class="account-name">{{ user.username }}</span>
+      <a href="{% url 'logout' %}" class="animated-link">Logout</a>
+    </div>
+  {% else %}
+    <a href="{% provider_login_url 'google' %}?next=/" class="animated-link">Login with Google</a>
+  {% endif %}
 </div>

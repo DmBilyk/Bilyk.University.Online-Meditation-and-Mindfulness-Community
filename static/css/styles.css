@@ -54,7 +54,8 @@ footer span
 /* Define background colors */
 .teal {
     background: #009688;
-    height: 10px;
+    height: 75px;
+
 
 }
 
@@ -76,12 +77,12 @@ footer span
 
 .teal .borderYtoX a:before {
     left: 0px;
-    top: 0px;
+    top: 100px;
 }
 
 .teal .borderYtoX a:after {
     right: 0px;
-    bottom: 0px;
+    bottom: 100px;
 }
 
 .teal .borderYtoX a:hover:before,
@@ -93,6 +94,7 @@ footer span
 
 
 .animated-link {
+    display: inline-block;
     color: #FFF;
     text-decoration: none;
     font: 20px Raleway;
@@ -129,5 +131,36 @@ footer span
     opacity: 1;
     height: 2px;
     width: 100%;
+}
+
+#navbar {
+    text-align: center;
+    padding: 20px 40px;
+    margin: 0 auto;
+
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+    background-image: url('/static/assets/images/user.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.account-name {
+    color: #FFF;
+    text-decoration: none;
+    font: 20px Raleway;
 }
 
