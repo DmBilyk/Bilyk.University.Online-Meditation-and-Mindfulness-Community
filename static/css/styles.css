@@ -17,14 +17,7 @@ body {
     align-items: center;
 }
 
-header, footer
-{
-    font-family: Raleway;
-    margin: 1em;
-	padding: 5em 3em;
-	text-align: center;
-    background: #555;
-}
+
 
 .main-text {
     color: white;
@@ -51,7 +44,24 @@ footer span
   color: #AAA;
 }
 
-/* Define background colors */
+.copyright-area {
+  background: #202020;
+  padding: 25px 0;
+  text-align: center;
+}
+
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+
+
+.copyright-text p a {
+  color: #009688;
+}
+
+
 .teal {
     background: #009688;
     height: 75px;

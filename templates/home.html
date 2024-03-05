@@ -14,32 +14,58 @@
 </head>
 <body>
 
+<main>
+    {% if user.is_authenticated %}
+    <div class="translucent-block">
+    <div class="main-text">
+        <h1>Welcome to Calm Connections</h1>
+        <p>We welcome you and thank you for joining us on this journey towards inner peace and tranquility.</p>
+        <section>
+            <h2>What We Offer</h2>
+            <ul>
+                <li>Guided Meditations: Immerse yourself in soothing sessions led by experienced instructors.</li>
+                <li>Mindfulness Practices: Discover techniques to reduce stress and enhance focus in daily life.</li>
+                <li>Community Support: Connect with like-minded individuals to share insights and build connections.</li>
+                <li>Resources: Access articles, videos, and tools to deepen your understanding of meditation and mindfulness.</li>
+            </ul>
+        </section>
+        <h2>Simple Meditation Method</h2>
+        <p>To begin your meditation practice, find a comfortable and quiet place to sit or lie down. Close your eyes and focus on your breath. Take deep, slow breaths, inhaling through your nose and exhaling through your mouth. Notice the sensation of the breath as it enters and leaves your body. Whenever your mind starts to wander, gently bring your focus back to your breath. Continue this practice for a few minutes, gradually increasing the duration as you become more comfortable.</p>
+    </div>
+</div>
 
+  {% else %}
             <div class="translucent-block">
         <div class="main-text">
-            <h1>Main Heading</h1>
-<!--                <button class="btn btn-outline-info">-->
-<!--        <a href="{% provider_login_url 'google'%}?next=/">-->
-<!--            <i class="fab fa-google"></i>-->
-<!--            Login with Google-->
-<!--        </a>-->
-<!--    </button>-->
 
-
-                    <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce non libero lorem. Nunc vitae nunc et justo tristique consectetur. Mauris consectetur feugiat lorem. Duis at odio in ligula congue feugiat. Suspendisse potenti. Nam a turpis at enim elementum malesuada. Phasellus volutpat lorem nec leo auctor malesuada. Fusce eu felis at quam pharetra vestibulum in ut lacus. Integer vel ultricies felis, id laoreet metus. Curabitur condimentum, ligula vitae bibendum ultricies, elit libero porta ipsum, a eleifend ligula dolor eu libero. Nulla facilisi. Vestibulum feugiat vestibulum nisl. Integer eleifend lorem eget ante sollicitudin, et interdum tellus accumsan. Vivamus accumsan in velit a aliquam. Nullam non efficitur eros, vitae consectetur ligula.
-        </p>
-        <p>
-            Sed ac elit risus. In tristique magna at libero luctus, nec efficitur neque vestibulum. Nulla facilisi. Vestibulum posuere odio a diam viverra, at aliquet ante condimentum. Nullam semper fringilla purus, sit amet scelerisque odio consectetur eget. Donec congue nec risus vitae lobortis. Vivamus nec felis nec est aliquet tempus. Vivamus sit amet fermentum dolor. Phasellus rutrum libero vel eros sollicitudin, ac vehicula odio accumsan.
-        </p>
-        <p>
-            Quisque convallis, est et molestie hendrerit, velit odio ultrices urna, nec elementum lorem purus eget est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean sit amet justo varius, placerat risus ut, feugiat arcu. Nam dictum consequat libero, nec cursus nulla consequat nec. Proin ac ante lobortis, ultricies mi eu, fringilla quam. Duis quis ex varius, varius elit eget, rhoncus tellus. Morbi consectetur, dolor non dictum vestibulum, urna orci pellentesque nisl, sit amet finibus dui purus nec elit. Duis lobortis metus a ex varius, eget tempus sem posuere. Mauris bibendum laoreet lacus vel vulputate. Cras rutrum vel est vel fermentum.
-        </p>
+                    <h1>Welcome to Calm Connections</h1>
+        <p>Where peace of mind and inner balance are our priorities</p>
+        <section>
+            <h2>What We Offer</h2>
+            <ul>
+                <li>Guided Meditations: Immerse yourself in soothing sessions led by experienced instructors.</li>
+                <li>Mindfulness Practices: Discover techniques to reduce stress and enhance focus in daily life.</li>
+                <li>Community Support: Connect with like-minded individuals to share insights and build connections.</li>
+                <li>Resources: Access articles, videos, and tools to deepen your understanding of meditation and mindfulness.</li>
+            </ul>
+        </section>
         </div>
     </div>
-
+  {% endif %}
+      </main>
   <footer>
-    <span>StyleSheet (C) All rights Reserved</span> <!-- Copyright information -->
+      <div class="copyright-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                <div class="copyright-text">
+                    <p>2024 Calm Connections. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
   </footer>
 
 
