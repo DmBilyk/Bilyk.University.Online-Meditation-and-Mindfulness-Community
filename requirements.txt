@@ -1,3 +1,3 @@
-Django==3.2.10
-django-allauth==0.48.0
-django-allauth[google]==0.48.0
+Django==5.0.3
+django-allauth==0.61.1
+django-allauth[google]==0.61.1
