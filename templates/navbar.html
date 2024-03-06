@@ -7,9 +7,34 @@
     <div class="profile-info">
       <div class="profile-picture"></div>
       <span class="account-name">{{ user.username }}</span>
-      <a href="{% url 'logout' %}" class="animated-link">Logout</a>
+      <a href="{% url 'logout' %}"  id="logout-link" class="animated-link" method="post" >Logout</a>
     </div>
   {% else %}
     <a href="{% provider_login_url 'google' %}?next=/" class="animated-link">Login with Google</a>
   {% endif %}
 </div>
+
+
+
+<script>
+    document.getElementById('logout-link').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{% url "logout" %}';
+
+
+        var csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = '{{ csrf_token }}';
+
+
+        form.appendChild(csrfInput);
+
+
+        document.body.appendChild(form);
+        form.submit();
+    });
+</script>
