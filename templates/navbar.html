@@ -6,7 +6,7 @@
   {% if user.is_authenticated %}
     <div class="profile-info">
       <div class="profile-picture"></div>
-      <span class="account-name">{{ user.username }}</span>
+      <a class="account-name animated-link" href="profile/">{{ user.username }}</a>
       <a href="{% url 'logout' %}"  id="logout-link" class="animated-link" method="post" >Logout</a>
     </div>
   {% else %}

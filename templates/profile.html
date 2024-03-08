@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load socialaccount %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        html,
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #009688;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+.copyright-area {
+  background: #202020;
+  padding: 25px 0;
+  text-align: center;
+}
+
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: #878787;
+}
+
+
+.copyright-text p a {
+  color: #009688;
+}
+        .profile-card {
+            background-color: rgba(255, 255, 255, 0.9); /* Півпрозорий білий фон */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #009688;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+footer span
+{
+  color: #AAA;
+}
+
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <h1>User Profile</h1>
+        <p>Name: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    </div>
+          <footer>
+      <div class="copyright-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                <div class="copyright-text">
+                    <p>2024 Calm Connections. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  </footer>
+
+</body>
+</html>
