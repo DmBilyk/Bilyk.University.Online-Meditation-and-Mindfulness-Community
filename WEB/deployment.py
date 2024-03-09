@@ -3,6 +3,8 @@ from .settings import *
 from .settings import BASE_DIR
 
 
+SITE_ID = 1
+
 
 SECRET_KEY = os.environ['SECRET']
 ALLOWED_HOSTS = [os.environ.get('calm-connections.azurewebsites.net')]
