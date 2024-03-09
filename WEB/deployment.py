@@ -6,7 +6,7 @@ from .settings import BASE_DIR
 
 SECRET_KEY = os.environ['SECRET']
 ALLOWED_HOSTS = [os.environ.get('calm-connections.azurewebsites.net')]
-CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS] + [f"http://{host}" for host in ALLOWED_HOSTS]
+CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 DEBUG = False
 
 
