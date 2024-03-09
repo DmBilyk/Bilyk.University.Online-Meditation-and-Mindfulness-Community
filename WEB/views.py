@@ -6,9 +6,7 @@ def home (request):
     return render(request, 'home.html', {'user': request.user})
 
 
-
-
 def profile_view(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-    print("User profile:", user_profile)  # Проверьте данные профиля в консоль
+    print("User profile:", user_profile)
     return render(request, 'profile.html', {'user_profile': user_profile})
