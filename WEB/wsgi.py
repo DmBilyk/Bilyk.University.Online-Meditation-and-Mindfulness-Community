@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 
-settings_module = 'WEB.deployment' if 'WEBSITE_HOSTNAME' in os.environ else 'WEB.settings'
+settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os.environ else 'WEB.settings'
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 
