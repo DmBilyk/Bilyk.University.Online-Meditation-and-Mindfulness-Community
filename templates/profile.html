@@ -50,10 +50,19 @@ footer span {
     </style>
 </head>
 <body>
-    <div class="profile-card">
-        <h1>User Profile</h1>
-        <p>Name: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
+<div class="profile-card">
+    <h1>User Profile</h1>
+    <p>Name: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    {% if user.profile %}
+        {% if user.profile.age %}
+            <p>Age: {{ user.profile.age }}</p>
+        {% endif %}
+        {% if user.profile.country %}
+            <p>Country: {{ user.profile.get_country_display }}</p>
+        {% endif %}
+    {% endif %}
+</div>
     </div>
           <footer>
       <div class="copyright-area">
