@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 from django.contrib.auth import views as auth_views
-
+from .views import edit_profile
 
 
 
@@ -27,5 +27,6 @@ urlpatterns = [
     path('',views.home, name = "home"),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', include("allauth.urls")),
+    path('edit-profile/', edit_profile, name='edit_profile'),
     path('profile/', views.profile_view, name='profile'),
 ]
