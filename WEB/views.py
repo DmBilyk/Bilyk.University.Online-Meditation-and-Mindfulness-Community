@@ -4,6 +4,8 @@ from WEB.models import UserProfile
 from .forms import ProfileForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from .models import Profile
 
 def home (request):
     return render(request, 'home.html', {'user': request.user})
@@ -16,11 +18,17 @@ def profile_view(request):
 
 @login_required
 def edit_profile(request):
+    user = request.user
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
+
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile.html')  # Замініть 'profile' на URL вашої сторінки профілю
+            return redirect('profile.html')
     else:
-        form = ProfileForm(instance=request.user.profile)
+        form = ProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form})
