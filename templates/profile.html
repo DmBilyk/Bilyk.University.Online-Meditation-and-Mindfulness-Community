@@ -100,7 +100,7 @@ footer span {
             <p>Country: {{ user.profile.get_country_display }}</p>
         {% endif %}
     {% endif %}
-    <a class="animated-link" href="edit-profile/">Edit profile</a>
+    <a class="animated-link" href="{% url 'edit_profile' %}">Edit profile</a>
 </div>
     </div>
           <footer>
