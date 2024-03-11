@@ -3,6 +3,11 @@ from .settings import *
 from .settings import BASE_DIR
 
 
+
+#This is used as setting.py when deploying to Azure
+
+
+
 SITE_ID = 1
 
 

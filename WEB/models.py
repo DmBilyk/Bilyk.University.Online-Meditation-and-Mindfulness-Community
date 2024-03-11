@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+#Profile model for creating
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     google_email = models.EmailField()
@@ -8,7 +9,7 @@ class UserProfile(models.Model):
 
 
 
-
+#Profile model for editing
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     google_id = models.CharField(max_length=255, unique=True)

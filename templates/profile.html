@@ -38,7 +38,45 @@ p {
 footer span {
     color: #AAA;
 }
+.animated-link {
+    display: inline-block;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px; /* Changed font-size */
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
 
+.animated-link:before,
+.animated-link:after {
+    opacity: 0.5;
+    height: 100%;
+    width: 2px;
+    content: '';
+    background: #FFF;
+    transition: all 0.3s;
+    position: absolute;
+}
+
+.animated-link:before {
+    left: 0px;
+    top: 0px;
+}
+
+.animated-link:after {
+    right: 0px;
+    bottom: 0px;
+}
+
+.animated-link:hover:before,
+.animated-link:hover:after {
+    opacity: 1;
+    height: 2px;
+    width: 100%;
+}
 /* Adaptation for smaller screens */
 @media only screen and (max-width: 768px) {
     .profile-card {
@@ -50,10 +88,20 @@ footer span {
     </style>
 </head>
 <body>
-    <div class="profile-card">
-        <h1>User Profile</h1>
-        <p>Name: {{ user.username }}</p>
-        <p>Email: {{ user.email }}</p>
+<div class="profile-card">
+    <h1>User Profile</h1>
+    <p>Name: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    {% if user.profile %}
+        {% if user.profile.age %}
+            <p>Age: {{ user.profile.age }}</p>
+        {% endif %}
+        {% if user.profile.country %}
+            <p>Country: {{ user.profile.get_country_display }}</p>
+        {% endif %}
+    {% endif %}
+    <a class="animated-link" href="edit-profile/">Edit profile</a>
+</div>
     </div>
           <footer>
       <div class="copyright-area">

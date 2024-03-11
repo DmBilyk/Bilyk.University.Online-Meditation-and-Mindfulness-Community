@@ -7,15 +7,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile
 
+
+#main page
 def home (request):
     return render(request, 'home.html', {'user': request.user})
 
 
+#page profile
 def profile_view(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     print("User profile:", user_profile)
     return render(request, 'profile.html', {'user_profile': user_profile})
 
+
+#page edit-profile
 @login_required
 def edit_profile(request):
     user = request.user
