@@ -57,11 +57,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      - name: Collect static files
-        run: python manage.py collectstatic --noinput
-        env:
-          AZURE_ACCOUNT_NAME: ${{ secrets.AZURE_ACCOUNT_NAME }}
-          AZURE_ACCOUNT_KEY: ${{ secrets.AZURE_ACCOUNT_KEY }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
