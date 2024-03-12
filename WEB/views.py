@@ -20,7 +20,7 @@ def profile_view(request):
     return render(request, 'profile.html', {'user_profile': user_profile})
 
 
-#page edit-profile
+
 #page edit-profile
 @login_required
 def edit_profile(request):
