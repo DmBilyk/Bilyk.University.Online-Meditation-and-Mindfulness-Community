@@ -6,7 +6,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile
-
+from django.shortcuts import get_object_or_404
 
 #main page
 def home (request):
@@ -24,10 +24,7 @@ def profile_view(request):
 @login_required
 def edit_profile(request):
     user = request.user
-    try:
-        profile = user.profile
-    except Profile.DoesNotExist:
-        profile = Profile.objects.create(user=user)
+    profile = get_object_or_404(Profile, user=user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -36,4 +33,5 @@ def edit_profile(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=profile)
+
     return render(request, 'edit_profile.html', {'form': form})
