@@ -20,6 +20,13 @@ class Profile(models.Model):
         ('CA', 'Canada'),
 
     ]
+    level_choise = [
+        ('Beginner'),
+        ('Intermediate'),
+        ('Professional'),
+
+    ]
+    level = models.CharField(max_length=2, choices=level_choise, blank=True, null=True)
     country = models.CharField(max_length=2, choices=country_choices, blank=True, null=True)
     bio = models.TextField(blank=True)
 
