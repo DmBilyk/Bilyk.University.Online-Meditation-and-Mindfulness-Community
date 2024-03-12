@@ -24,7 +24,7 @@ def profile_view(request):
 @login_required
 def edit_profile(request):
     user = request.user
-    profile = get_object_or_404(Profile, user=user)
+    profile, created = Profile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
