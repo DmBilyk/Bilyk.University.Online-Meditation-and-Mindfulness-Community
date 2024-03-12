@@ -195,7 +195,7 @@ footer span {
 <form id="profileForm" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <a href="#" class="animated-link" onclick="document.getElementById('profileForm').submit(); return false;">Save</a>
+    <button type="submit" class="animated-link">Save</button>
 </form>
 
             <div/>
