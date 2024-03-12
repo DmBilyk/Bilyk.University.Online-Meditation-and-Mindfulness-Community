@@ -106,9 +106,9 @@ footer span {
 
 .animated-link {
     display: inline-block;
-    color: #FFF;
+    color: #009688;
     text-decoration: none;
-    font-size: 20px; /* Changed font-size */
+    font-size: 20px;
     margin: 0px 10px;
     padding: 10px 10px;
     position: relative;
@@ -122,7 +122,7 @@ footer span {
     height: 100%;
     width: 2px;
     content: '';
-    background: #FFF;
+    background: #cccccc;
     transition: all 0.3s;
     position: absolute;
 }
@@ -189,11 +189,16 @@ footer span {
 
 </head>
 <body>
+                <div class="translucent-block">
+        <div class="main-text">
     <h1>Edit Profile</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+<form id="profileForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="#" class="animated-link" onclick="document.getElementById('profileForm').submit(); return false;">Save</a>
+</form>
+
+            <div/>
+            <div/>
 </body>
 </html>
