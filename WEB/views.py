@@ -21,10 +21,14 @@ def profile_view(request):
 
 
 #page edit-profile
+#page edit-profile
 @login_required
 def edit_profile(request):
     user = request.user
-    profile, created = Profile.objects.get_or_create(user=user)
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
@@ -33,5 +37,4 @@ def edit_profile(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=profile)
-
     return render(request, 'edit_profile.html', {'form': form})
