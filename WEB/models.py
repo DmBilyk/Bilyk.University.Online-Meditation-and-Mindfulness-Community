@@ -21,12 +21,12 @@ class Profile(models.Model):
 
     ]
     level_choise = [
-        ('Beginner'),
-        ('Intermediate'),
-        ('Professional'),
+        ('BEG', 'Beginner'),
+        ('INT', 'Intermediate'),
+        ('PRO', 'Professional'),
 
     ]
-    level = models.CharField(max_length=2, choices=level_choise, blank=True, null=True)
+    level = models.CharField(max_length=3, choices=level_choise, blank=True, null=True)
     country = models.CharField(max_length=2, choices=country_choices, blank=True, null=True)
     bio = models.TextField(blank=True)
 
