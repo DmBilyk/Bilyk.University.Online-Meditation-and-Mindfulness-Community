@@ -41,8 +41,14 @@ and you will have access to everything our service offers.And every week there w
 
 ### Week 2:
 - Implement feature: Profile Customization ✔️
-- Design architecture diagram for the project
-- Configure CI/CD pipeline for automated deployment on Azure
-- Begin writing unit tests for user registration functionality
+- Design architecture diagram for the project ✔️
+- Configure CI/CD pipeline for automated deployment on Azure ✔️
+- Begin writing unit tests for user registration functionality ✔️
 - Document project architecture in README.md ✔️
 
+
+
+
+
+
+![img.png](img.png)
