@@ -158,13 +158,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 
-# Папка, де будуть зібрані статичні файли для продакшну
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = [BASE_DIR, 'static']
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR]
 
-# Додаткові місця пошуку статичних файлів під час розробки
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+MEDIA_URL = '/media/'
 
 
 # Default primary key field type

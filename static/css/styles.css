@@ -4,9 +4,6 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/static/assets/images/background.jpeg');
-    background-size: cover;
-    background-position: center;
     font-family: 'Raleway', sans-serif; /* Added font-family */
 }
 

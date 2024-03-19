@@ -2,10 +2,9 @@
 
 <div id="navbar" class="container teal borderYtoX">
   <a href="/" class="animated-link">HOME</a>
-  <a href="#" class="animated-link">ABOUT</a>
   {% if user.is_authenticated %}
+    <a href="guided-meditation" class="animated-link">Guided-Meditation</a>
     <div class="profile-info">
-      <div class="profile-picture"></div>
       <a class="account-name animated-link" href="/profile/">{{ user.username }}</a>
       <a href="{% url 'logout' %}"  id="logout-link" class="animated-link" method="post" >Logout</a>
     </div>
