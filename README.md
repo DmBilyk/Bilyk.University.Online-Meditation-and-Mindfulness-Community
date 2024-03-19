@@ -43,7 +43,7 @@ JavaScript, CSS, and HTML are employed to enhance the frontend functionality and
 To get all the features of the service, you need to have a Google account for simple authorization, one step 
 and you will have access to everything our service offers.And every week there will be more and more opportunities.
 
-### Can use locallhot
+### Can use locallhost
 ```bash
 pip install requirements.txt
 ```
