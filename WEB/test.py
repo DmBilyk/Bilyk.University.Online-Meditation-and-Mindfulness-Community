@@ -7,7 +7,7 @@ class GoogleRegistrationTest(TestCase):
 
         self.user = User.objects.create_user(username='testuser', password='secret')
 
-        self.google_app = SocialApp.objects.create(provider='Google', name='Calm-Connections', client_id='client_id')
+       # self.google_app = SocialApp.objects.create(provider='Google', name='Calm-Connections', client_id='client_id')
 
     def test_google_registration(self):
 
