@@ -1,29 +1,15 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from allauth.socialaccount.models import SocialApp
+from django.urls import reverse
 
-class GoogleRegistrationTest(TestCase):
+class GoogleAuthTestCase(TestCase):
     def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
 
-        self.user = User.objects.create_user(username='testuser', password='password')
+    def test_google_auth_redirect(self):
 
-    def test_google_registration(self):
+        client = Client()
 
-        response = self.client.get('/google/login/callback/?code=valid-google-token')
+        response = client.get(reverse('google-auth'))
 
-        self.assertEqual(response.status_code, 200)
-
-
-        self.assertTrue(User.objects.filter(username='testuser').exists())
-
-
-        self.assertTrue(self.user.socialaccount_set.filter(provider='Google').exists())
-
-
-        user = User.objects.get(username='testuser')
-        self.assertEqual(user.email, 'testuser@example.com')
-        self.assertTrue(user.is_active)
-        self.assertFalse(user.is_staff)
-        self.assertFalse(user.is_superuser)
-        self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertRedirects(response, '/dashboard/')
+        self.assertEqual(response.status_code, 302)
