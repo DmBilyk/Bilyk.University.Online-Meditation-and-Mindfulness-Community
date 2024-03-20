@@ -5,9 +5,7 @@ from allauth.socialaccount.models import SocialApp
 class GoogleRegistrationTest(TestCase):
     def setUp(self):
 
-        self.user = User.objects.create_user(username='testuser', password='secret')
-
-       # elf.google_app = SocialApp.objects.create(provider='Google', name='Calm-Connections', client_id='client_id')
+        self.user = User.objects.create_user(username='testuser', password='password')
 
     def test_google_registration(self):
 
