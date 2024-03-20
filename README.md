@@ -85,7 +85,7 @@ http://127.0.0.1:8000/
 - Document project architecture in README.md ✔️
 
 ### Week 3:
-- Develop infrastructure diagram outlining Azure components 
+- Develop infrastructure diagram outlining Azure components  ✔️
 - Enhance unit test coverage for user registration ✔️
 - Create Postman collection for testing user registration endpoints ✔️
 - Implement feature: Guided Meditation Sessions ✔️
