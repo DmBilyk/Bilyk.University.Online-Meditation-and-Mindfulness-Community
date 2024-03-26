@@ -1,4 +1,5 @@
 <!-- edit_profile.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +7,14 @@
     <title>Edit Profile</title>
 
 
-        <style>
-    @import 'https://fonts.googleapis.com/css?family=Raleway';
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Raleway';
 
 html,
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/static/assets/images/background.jpeg');
+    background-image: url("{% static 'assets/background.jpeg' %}");
     background-size: cover;
     background-position: center;
     font-family: 'Raleway', sans-serif; /* Added font-family */

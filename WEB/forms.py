@@ -2,7 +2,7 @@ from django import forms
 from .models import Profile
 
 
-#Profile form for editing
+# Profile feedback for editing
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile

@@ -53,7 +53,7 @@
                     $parent.append('<tr class="' + options.addCssClass + '"><td colspan="' + numCols + '"><a href="#">' + options.addText + "</a></tr>");
                     addButton = $parent.find("tr:last a");
                 } else {
-                    // Otherwise, insert it immediately after the last form:
+                    // Otherwise, insert it immediately after the last feedback:
                     $this.filter(":last").after('<div class="' + options.addCssClass + '"><a href="#">' + options.addText + "</a></div>");
                     addButton = $this.filter(":last").next().find("a");
                 }
@@ -72,7 +72,7 @@
             row.find("*").each(function() {
                 updateElementIndex(this, options.prefix, totalForms.val());
             });
-            // Insert the new form when it has been fully edited.
+            // Insert the new feedback when it has been fully edited.
             row.insertBefore($(template));
             // Update number of total forms.
             $(totalForms).val(parseInt(totalForms.val(), 10) + 1);
@@ -84,7 +84,7 @@
             // Show the remove buttons if there are more than min_num.
             toggleDeleteButtonVisibility(row.closest('.inline-group'));
 
-            // Pass the new form to the post-add callback, if provided.
+            // Pass the new feedback to the post-add callback, if provided.
             if (options.added) {
                 options.added(row);
             }
@@ -111,7 +111,7 @@
                 row.append('<li><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></li>");
             } else {
                 // Otherwise, just insert the remove button as the
-                // last child element of the form's container:
+                // last child element of the feedback's container:
                 row.children(":first").append('<span><a class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></span>");
             }
             // Add delete handler for each row.
@@ -123,15 +123,15 @@
             const deleteButton = $(e1.target);
             const row = deleteButton.closest('.' + options.formCssClass);
             const inlineGroup = row.closest('.inline-group');
-            // Remove the parent form containing this button,
+            // Remove the parent feedback containing this button,
             // and also remove the relevant row with non-field errors:
             const prevRow = row.prev();
-            if (prevRow.length && prevRow.hasClass('row-form-errors')) {
+            if (prevRow.length && prevRow.hasClass('row-feedback-errors')) {
                 prevRow.remove();
             }
             row.remove();
             nextIndex -= 1;
-            // Pass the deleted form to the post-delete callback, if provided.
+            // Pass the deleted feedback to the post-delete callback, if provided.
             if (options.removed) {
                 options.removed(row);
             }
@@ -140,7 +140,7 @@
                     formsetName: options.prefix
                 }
             }));
-            // Update the TOTAL_FORMS form count.
+            // Update the TOTAL_FORMS feedback count.
             const forms = $("." + options.formCssClass);
             $("#id_" + options.prefix + "-TOTAL_FORMS").val(forms.length);
             // Show add button again once below maximum number.
@@ -149,7 +149,7 @@
             }
             // Hide the remove buttons if at min_num.
             toggleDeleteButtonVisibility(inlineGroup);
-            // Also, update names and ids for all remaining form controls so
+            // Also, update names and ids for all remaining feedback controls so
             // they remain in sequence:
             let i, formCount;
             const updateElementCallback = function() {
@@ -197,15 +197,15 @@
 
     /* Setup plugin defaults */
     $.fn.formset.defaults = {
-        prefix: "form", // The form prefix for your django formset
+        prefix: "form", // The feedback prefix for your django formset
         addText: "add another", // Text for the add link
         deleteText: "remove", // Text for the delete link
         addCssClass: "add-row", // CSS class applied to the add link
         deleteCssClass: "delete-row", // CSS class applied to the delete link
         emptyCssClass: "empty-row", // CSS class applied to the empty row
-        formCssClass: "dynamic-form", // CSS class applied to each form in a formset
-        added: null, // Function called each time a new form is added
-        removed: null, // Function called each time a form is deleted
+        formCssClass: "dynamic-feedback", // CSS class applied to each feedback in a formset
+        added: null, // Function called each time a new feedback is added
+        removed: null, // Function called each time a feedback is deleted
         addButton: null // Existing add button to use
     };
 
@@ -223,7 +223,7 @@
         };
 
         const updateSelectFilter = function() {
-            // If any SelectFilter widgets are a part of the new form,
+            // If any SelectFilter widgets are a part of the new feedback,
             // instantiate a new SelectFilter instance for it.
             if (typeof SelectFilter !== 'undefined') {
                 $('.selectfilter').each(function(index, value) {
@@ -256,8 +256,8 @@
             formCssClass: "dynamic-" + options.prefix,
             deleteCssClass: "inline-deletelink",
             deleteText: options.deleteText,
-            emptyCssClass: "empty-form",
-            added: function(row) {
+            emptyCssClass: "empty-feedback",
+            added: function (row) {
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
@@ -306,10 +306,10 @@
                     dependencies = [];
                 $.each(dependency_list, function(i, field_name) {
                     // Dependency in a fieldset.
-                    let field_element = row.find('.form-row .field-' + field_name);
+                    let field_element = row.find('.feedback-row .field-' + field_name);
                     // Dependency without a fieldset.
                     if (!field_element.length) {
-                        field_element = row.find('.form-row.field-' + field_name);
+                        field_element = row.find('.feedback-row.field-' + field_name);
                     }
                     dependencies.push('#' + field_element.find('input, select, textarea').attr('id'));
                 });
@@ -325,9 +325,9 @@
             formCssClass: "dynamic-" + options.prefix,
             deleteCssClass: "inline-deletelink",
             deleteText: options.deleteText,
-            emptyCssClass: "empty-form",
+            emptyCssClass: "empty-feedback",
             removed: updateInlineLabel,
-            added: function(row) {
+            added: function (row) {
                 initPrepopulatedFields(row);
                 reinitDateTimeShortCuts();
                 updateSelectFilter();
@@ -350,7 +350,7 @@
                 $(selector).stackedFormset(selector, inlineOptions.options);
                 break;
             case "tabular":
-                selector = inlineOptions.name + "-group .tabular.inline-related tbody:first > tr.form-row";
+                selector = inlineOptions.name + "-group .tabular.inline-related tbody:first > tr.feedback-row";
                 $(selector).tabularFormset(selector, inlineOptions.options);
                 break;
             }

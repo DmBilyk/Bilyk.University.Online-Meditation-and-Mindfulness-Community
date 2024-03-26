@@ -41,7 +41,7 @@ def edit_profile(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=profile)
-    return render(request, 'edit_profile.html', {'form': form})
+    return render(request, 'edit_profile.html', {'feedback': form})
 
 
 def get_list_video(request):

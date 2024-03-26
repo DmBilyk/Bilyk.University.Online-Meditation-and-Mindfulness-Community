@@ -72,7 +72,7 @@ html {
 }
 
 /**
- * Address `font-family` inconsistency between `textarea` and other form
+ * Address `font-family` inconsistency between `textarea` and other feedback
  * elements.
  */
 
@@ -417,7 +417,7 @@ input {
 
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
- * All other form control elements do not inherit `text-transform` values.
+ * All other feedback control elements do not inherit `text-transform` values.
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */

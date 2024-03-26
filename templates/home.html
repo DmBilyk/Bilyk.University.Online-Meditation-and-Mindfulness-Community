@@ -8,6 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <style>
     @import 'https://fonts.googleapis.com/css?family=Raleway';
 
@@ -15,7 +16,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/static/assets/images/background.jpeg');
+    background-image: url("{% static 'assets/images/background.jpeg' %}");
     background-size: cover;
     background-position: center;
     font-family: 'Raleway', sans-serif; /* Added font-family */
