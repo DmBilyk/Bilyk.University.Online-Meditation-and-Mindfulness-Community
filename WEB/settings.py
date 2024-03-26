@@ -58,7 +58,6 @@ SOCIALACCOUNT_LOGIN_ON_GET=True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,15 +86,6 @@ TEMPLATES = [
     },
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_config")
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 WSGI_APPLICATION = 'WEB.wsgi.application'
 
@@ -169,11 +159,13 @@ LOGOUT_REDIRECT_URL = '/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_URL = '/static/'
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
