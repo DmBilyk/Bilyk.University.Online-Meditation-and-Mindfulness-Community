@@ -35,6 +35,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
     path('feedback/', include('feedback.urls')),
+    path('forum/', include('Forum.urls')),
 
 ]
 
