@@ -87,8 +87,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'WEB.wsgi.application'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_config")
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+STATIC_HOST = os.environ.get("DJANGO_STATIC_HOST", "")
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static", ]
 
+WSGI_APPLICATION = 'WEB.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -161,10 +170,6 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-STATIC_URL = '/static/'
-
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 MEDIA_URL = '/media/'
