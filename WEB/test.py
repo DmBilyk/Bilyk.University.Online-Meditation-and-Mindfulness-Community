@@ -1,30 +1,54 @@
-from django.test import TransactionTestCase
+from django.test import TestCase, RequestFactory
 from django.contrib.auth.models import User
-from allauth.socialaccount.models import SocialApp
+from django.urls import reverse
+from .models import Profile
+from .views import edit_profile
+import unittest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
-class GoogleRegistrationTest(TransactionTestCase):
+class ProfileCustomizationTests(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='secret')
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(username='test_user', email='test@example.com', password='password123')
+        self.profile = Profile.objects.create(user=self.user, age=25, country='US', bio='Test bio', level='BEG')
 
-    def test_google_registration(self):
-        # Створення фейкового об'єкта SocialApp для провайдера Google
-        google_app = SocialApp.objects.create(provider='google',
-                                              name='Calm-Connections',
-                                              client_id='your_google_client_id',
-                                              secret='your_google_client_secret')
+    def test_edit_profile_view_authenticated(self):
+        self.client.force_login(self.user)
 
-        # Виконання запиту до /google/login/callback/?code=valid-google-token
-        response = self.client.get('/google/login/callback/?code=valid-google-token')
+        url = reverse('edit_profile')
+        data = {
+            'age': 30,
+            'country': 'UK',
+            'bio': 'Updated bio',
+            'level': 'INT',
+        }
+        response = self.client.post(url, data)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(User.objects.filter(username='testuser').exists())
-        self.assertTrue(self.user.socialaccount_set.filter(provider='google').exists())
+        self.assertEqual(response.status_code, 302)
+        updated_profile = Profile.objects.get(user=self.user)
+        self.assertEqual(updated_profile.age, 30)
+        self.assertEqual(updated_profile.country, 'UK')
+        self.assertEqual(updated_profile.bio, 'Updated bio')
+        self.assertEqual(updated_profile.level, 'INT')
 
-        user = User.objects.get(username='testuser')
-        self.assertEqual(user.email, 'testuser@example.com')
-        self.assertTrue(user.is_active)
-        self.assertFalse(user.is_staff)
-        self.assertFalse(user.is_superuser)
-        self.assertTrue(response.wsgi_request.user.is_authenticated)
-        self.assertRedirects(response, '/home/')
+
+class ChromeCompatibilityTest(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+
+    def test_page_loads(self):
+        self.driver.get("https://calm-connections.azurewebsites.net/")
+
+        expected_title = ""
+        self.assertEqual(expected_title, self.driver.title)
+
+        translucent_block = self.driver.find_element(By.CLASS_NAME, "translucent-block")
+        main_text = self.driver.find_element(By.CLASS_NAME, "main-text")
+
+        self.assertTrue(translucent_block.is_displayed())
+        self.assertTrue(main_text.is_displayed())
+
+    def tearDown(self):
+        self.driver.quit()

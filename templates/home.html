@@ -5,20 +5,22 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<style>
-    @import 'https://fonts.googleapis.com/css?family=Raleway';
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url("{% static 'assets/images/background.jpeg' %}");
-    background-size: cover;
-    background-position: center;
+    <title>Calm-Connection</title>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Raleway';
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'assets/images/background.jpeg' %}");
+            background-size: cover;
+            background-position: center;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -171,29 +173,78 @@ footer span {
     background-position: center;
 }
 
-.account-name {
-    color: #FFF;
-    text-decoration: none;
-    font-size: 20px; /* Changed font-size */
-}
+        .account-name {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 20px; /* Changed font-size */
+        }
 
 
+        .loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .loader {
+            width: 50px;
+            aspect-ratio: 1;
+            display: grid;
+            border: 4px solid #0000;
+            border-radius: 50%;
+            border-right-color: #25b09b;
+            animation: l15 1s infinite linear;
+        }
+
+        .loader::before,
+        .loader::after {
+            content: "";
+            grid-area: 1/1;
+            margin: 2px;
+            border: inherit;
+            border-radius: 50%;
+            animation: l15 2s infinite;
+        }
+
+        .loader::after {
+            margin: 8px;
+            animation-duration: 3s;
+        }
+
+        @keyframes l15 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        .loader-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
 
 
 </style>
 </head>
 <body>
-
+<div class="loader-background"></div>
+<div class="loader"></div>
 <main>
     {% if user.is_authenticated %}
     <div class="translucent-block">
-    <div class="main-text">
-        <h1>Welcome to Calm Connections</h1>
-        <p>We welcome you and thank you for joining us on this journey towards inner peace and tranquility.</p>
-        <section>
-            <h2>What We Offer</h2>
-            <ul>
-                <li>Guided Meditations: Immerse yourself in soothing sessions led by experienced instructors.</li>
+        <div class="main-text">
+            <h1>Welcome to Calm Connections</h1>
+            <p>We welcome you and thank you for joining us on this journey towards inner peace and tranquility.</p>
+            <section>
+                <h2>What We Offer</h2>
+                <ul>
+                    <li>Guided Meditations: Immerse yourself in soothing sessions led by experienced instructors.</li>
                 <li>Mindfulness Practices: Discover techniques to reduce stress and enhance focus in daily life.</li>
                 <li>Community Support: Connect with like-minded individuals to share insights and build connections.</li>
                 <li>Resources: Access articles, videos, and tools to deepen your understanding of meditation and mindfulness.</li>
@@ -235,8 +286,18 @@ footer span {
             </div>
         </div>
     </div>
-</div>
+      </div>
 
   </footer>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(window).on("load", function () {
+        $(".loader-background").fadeOut();
+        $(".loader_inner").fadeOut();
+        $(".loader").delay(400).fadeOut("slow");
+    });
+</script>
 </html>

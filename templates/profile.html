@@ -179,28 +179,79 @@ footer span {
 }
 
 
-
-
-/* Adaptation for smaller screens */
-@media only screen and (max-width: 768px) {
-    .profile-card {
-        max-width: 90%;
+    /* Adaptation for smaller screens */
+    @media only screen and (max-width: 768px) {
+        .profile-card {
+            max-width: 90%;
+        }
     }
-}
 
+    .loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+    }
+
+    .loader {
+        width: 50px;
+        aspect-ratio: 1;
+        display: grid;
+        border: 4px solid #0000;
+        border-radius: 50%;
+        border-right-color: #25b09b;
+        animation: l15 1s infinite linear;
+    }
+
+    .loader::before,
+    .loader::after {
+        content: "";
+        grid-area: 1/1;
+        margin: 2px;
+        border: inherit;
+        border-radius: 50%;
+        animation: l15 2s infinite;
+    }
+
+    .loader::after {
+        margin: 8px;
+        animation-duration: 3s;
+    }
+
+    @keyframes l15 {
+        100% {
+            transform: rotate(1turn)
+        }
+    }
+
+    .loader-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
 
     </style>
 </head>
 <body>
+
+<div class="loader-background"></div>
+<div class="loader"></div>
+
+
 <div class="profile-card">
     <h1>User Profile</h1>
     <p>Name: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
     {% if user.profile %}
-        {% if user.profile.age %}
-            <p>Age: {{ user.profile.age }}</p>
-        {% endif %}
-        {% if user.profile.country %}
+    {% if user.profile.age %}
+    <p>Age: {{ user.profile.age }}</p>
+    {% endif %}
+    {% if user.profile.country %}
             <p>Country: {{ user.profile.get_country_display }}</p>
         {% endif %}
         {% if user.profile.level %}
@@ -221,9 +272,19 @@ footer span {
             </div>
         </div>
     </div>
-</div>
+      </div>
 
-  </footer>
+          </footer>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(window).on("load", function () {
+        $(".loader-background").fadeOut();
+        $(".loader_inner").fadeOut();
+        $(".loader").delay(400).fadeOut("slow");
+    });
+</script>
 </html>
