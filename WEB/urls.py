@@ -29,17 +29,16 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('edit-profile/', edit_profile, name='edit_profile'),
     path('profile/', views.profile_view, name='profile'),
-    path('stream/<int:pk>/', views.get_streaming_video, name='stream'),
     path('<int:pk>/', views.get_video, name='video'),
     path('guided-meditation/', views.get_list_video, name='guided-meditation'),
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
     path('feedback/', include('feedback.urls')),
     path('forum/', include('Forum.urls')),
+    path('', include('Progress.urls')),
 
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

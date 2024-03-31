@@ -18,11 +18,11 @@
         body {
             margin: 0;
             padding: 0;
-            background-image: url("{% static 'assets/images/background.jpeg' %}");
+            background-image: url("https://as2.ftcdn.net/v2/jpg/06/30/26/05/1000_F_630260541_rw88M00bU736LFYOqLRJe0PcUxcuXyof.jpg");
             background-size: cover;
             background-position: center;
-    font-family: 'Raleway', sans-serif;
-}
+            font-family: 'Raleway', sans-serif;
+        }
 
 .translucent-block {
     background-color: rgba(0, 0, 0, 0.5);
@@ -70,114 +70,6 @@ footer span {
 .copyright-text p a {
     color: #009688;
 }
-
-.teal {
-    background: #009688;
-    height: 75px;
-}
-
-.gray {
-    background: #9e9e9e;
-}
-
-/* Top and Bottom borders go out */
-.teal .borderYtoX a:before,
-.teal .borderYtoX a:after {
-    opacity: 0.5;
-    height: 100%;
-    width: 2px;
-    content: '';
-    background: #FFF;
-    transition: all 0.3s;
-    position: absolute;
-}
-
-.teal .borderYtoX a:before {
-    left: 0px;
-    top: 100px;
-}
-
-.teal .borderYtoX a:after {
-    right: 0px;
-    bottom: 100px;
-}
-
-.teal .borderYtoX a:hover:before,
-.teal .borderYtoX a:hover:after {
-    opacity: 1;
-    height: 2px;
-    width: 100%;
-}
-
-.animated-link {
-    display: inline-block;
-    color: #FFF;
-    text-decoration: none;
-    font-size: 20px; /* Changed font-size */
-    margin: 0px 10px;
-    padding: 10px 10px;
-    position: relative;
-    z-index: 0;
-    cursor: pointer;
-}
-
-.animated-link:before,
-.animated-link:after {
-    opacity: 0.5;
-    height: 100%;
-    width: 2px;
-    content: '';
-    background: #FFF;
-    transition: all 0.3s;
-    position: absolute;
-}
-
-.animated-link:before {
-    left: 0px;
-    top: 0px;
-}
-
-.animated-link:after {
-    right: 0px;
-    bottom: 0px;
-}
-
-.animated-link:hover:before,
-.animated-link:hover:after {
-    opacity: 1;
-    height: 2px;
-    width: 100%;
-}
-
-#navbar {
-    text-align: center;
-    padding: 20px 40px;
-    margin: 0 auto;
-}
-
-.profile-info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
-.profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ccc;
-    margin-right: 10px;
-    background-image: url('/static/assets/images/user.jpeg');
-    background-size: cover;
-    background-position: center;
-}
-
-        .account-name {
-            color: #FFF;
-            text-decoration: none;
-            font-size: 20px; /* Changed font-size */
-        }
 
 
         .loader {

@@ -11,6 +11,7 @@ from django.http import StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Video
 from .services import open_file
+import re
 
 #main page
 def home (request):
@@ -41,24 +42,27 @@ def edit_profile(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=profile)
-    return render(request, 'edit_profile.html', {'feedback': form})
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 def get_list_video(request):
-    return render(request, 'video/video_list.html', {'video_list': Video.objects.all()})
+    videos = Video.objects.all()
+    return render(request, 'video/video_list.html', {'video_list': videos})
+
+
+def extract_video_id(url):
+    video_id = None
+    match = re.search(r"(?<=v=)[a-zA-Z0-9_-]+", url)
+    if match:
+        video_id = match.group(0)
+    return video_id
+
+
+def get_video_id(youtube_link):
+    return extract_video_id(youtube_link)
 
 
 def get_video(request, pk: int):
-    _video = get_object_or_404(Video, id=pk)
-    return render(request, "video/video.html", {"video": _video})
-
-
-def get_streaming_video(request, pk: int):
-    file, status_code, content_length, content_range = open_file(request, pk)
-    response = StreamingHttpResponse(file, status=status_code, content_type='video/mp4')
-
-    response['Accept-Ranges'] = 'bytes'
-    response['Content-Length'] = str(content_length)
-    response['Cache-Control'] = 'no-cache'
-    response['Content-Range'] = content_range
-    return response
+    video = get_object_or_404(Video, id=pk)
+    video_id = get_video_id(video.youtube_link)
+    return render(request, "video/video.html", {"video": video, "video_id": video_id})
