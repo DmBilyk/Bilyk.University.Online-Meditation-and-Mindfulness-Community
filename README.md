@@ -85,14 +85,57 @@ http://127.0.0.1:8000/
 - Document project architecture in README.md ✔️
 
 ### Week 3:
-- Develop infrastructure diagram outlining Azure components  ✔️
+
+- Develop infrastructure diagram outlining Azure components ✔️
 - Enhance unit test coverage for user registration ✔️
 - Create Postman collection for testing user registration endpoints ✔️
 - Implement feature: Guided Meditation Sessions ✔️
 - Update README.md with project tasks decomposition ✔️
 
+## User Acceptance Testing
 
+-The "User Profile" section does not display BIO after saving.✔️
 
+-No option to add a profile photo.-
 
+-The site footer needs to correct "freeback" instead of "freeback".✔️
+
+-Forum have no option to reply to a user and create your own wall on a question you interested in.✔️
+
+-No "back" button when leaving a page with meditation video from youtube.✔️
+
+-The section with tasks is useless if it is not logically connected to the parts of the site, which would be a task.✔️
+
+-Cute loading wheel✔️
+
+### Week 4:
+
+- Expand unit tests to cover profile customization functionality ✔️
+-
+- Implement feature: Community ✔️
+-
+- Integrate feedback system for user interaction ✔️
+-
+- Conduct testing on Google Chrome PC browsers for compatibility ✔️
+-
+- Review and update documentation in README.md ✔️
+
+## Week 5:
+
+#### - Optimize Azure deployment for performance and scalability ✔️
+
+Rewritten deployment logic and fixed static files
+
+#### - Conduct user acceptance testing to ensure seamless functionality ✔️
+
+#### - Refactor code for improved readability and maintainability ✔️
+
+#### - Update README.md with testing procedures and results ✔️
+
+Successfully tested user editing and checking the driver on google chrome
+
+#### - Implement feature: Progress Tracking ✔️
+
+# Project scheme
 
 ![img.png](img.png)

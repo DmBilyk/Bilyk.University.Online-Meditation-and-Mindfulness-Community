@@ -33,17 +33,18 @@ class Profile(models.Model):
         return self.user.username
 
 
-class PersonalCalendar(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    event_title = models.CharField(max_length=255)
-    event_description = models.TextField()
-    start_datetime = models.DateTimeField()
-    end_datetime = models.DateTimeField()
-    location = models.CharField(max_length=255, blank=True, null=True)
-    reminder = models.DateTimeField(blank=True, null=True)
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+
+
+class TaskCategory(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+    color = models.CharField(max_length=7, default='#007bff')  # Default color blue
 
     def __str__(self):
-        return self.event_title
+        return self.name
 
 
 class Task(models.Model):
@@ -52,10 +53,10 @@ class Task(models.Model):
     description = models.CharField(max_length=255)
     completed = models.BooleanField(default=False)
     last_reset = models.DateTimeField(default=timezone.now)
+    category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.description
-
 
 from django.db import models
 

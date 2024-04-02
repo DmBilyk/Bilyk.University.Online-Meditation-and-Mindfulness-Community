@@ -2,10 +2,10 @@ from django.test import TestCase, RequestFactory
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import Profile
-from .views import edit_profile
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
 
 
 class ProfileCustomizationTests(TestCase):
@@ -41,7 +41,7 @@ class ChromeCompatibilityTest(unittest.TestCase):
     def test_page_loads(self):
         self.driver.get("https://calm-connections.azurewebsites.net/")
 
-        expected_title = ""
+        expected_title = "Calm-Connection"
         self.assertEqual(expected_title, self.driver.title)
 
         translucent_block = self.driver.find_element(By.CLASS_NAME, "translucent-block")

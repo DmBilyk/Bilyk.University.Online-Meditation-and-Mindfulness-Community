@@ -1,16 +1,10 @@
-from django.http import HttpResponse
 from django.shortcuts import render ,redirect
 from WEB.models import UserProfile
 from .forms import ProfileForm
-from .models import Profile
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from .models import Profile
-from django.shortcuts import get_object_or_404
-from django.http import StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Video
-from .services import open_file
 import re
 
 #main page
@@ -27,7 +21,6 @@ def profile_view(request):
 
 
 #page edit-profile
-@login_required
 def edit_profile(request):
     user = request.user
     try:
@@ -43,7 +36,6 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form})
-
 
 def get_list_video(request):
     videos = Video.objects.all()

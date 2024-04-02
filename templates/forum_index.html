@@ -171,12 +171,19 @@
     <h1>Forum</h1>
     <!-- Post List -->
     <ul>
-        {% for post in posts %}
-        <li class="post">
+        {% for item in posts_with_responses %}
+        <li class="post" id="post-{{ item.post.id }}">
             <div class="post-header">
-                <span class="author">{{ post.user.username }}</span> - <span class="date">{{ post.created_at }}</span>
+                <span class="author">{{ item.post.user.username }}</span> - <span class="date">{{ item.post.created_at }}</span>
             </div>
-            <p>{{ post.message }}</p>
+            <p>{{ item.post.message }}</p>
+            {% for response in item.responses %}
+            <div class="response">
+                <p>In response to Post #{{ response.parent_post.id }}</p> <!-- Display the parent post ID -->
+                <p>{{ response.message }}</p>
+            </div>
+            {% endfor %}
+            <a href="{% url 'create_post' %}?parent_post_id={{ item.post.id }}">Reply</a>
         </li>
         {% endfor %}
     </ul>
@@ -186,8 +193,10 @@
     <form action="{% url 'create_post' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <input type="hidden" name="parent_post_id" value="{{ parent_post_id }}">
         <button class="create-post-btn" type="submit">Post</button>
     </form>
+
 </div>
 
 </body>
@@ -200,5 +209,25 @@
         $(".loader_inner").fadeOut();
         $(".loader").delay(400).fadeOut("slow");
     });
+
+
+</script>
+
+<script>
+
+    function scrollToPost(postId) {
+        const postElement = document.getElementById(`post-${postId}`);
+        if (postElement) {
+            postElement.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('post');
+        if (postId) {
+            scrollToPost(postId);
+        }
+    };
 </script>
 </html>
