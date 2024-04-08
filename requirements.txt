@@ -5,3 +5,9 @@ django_environ==0.11.2
 python-dotenv==1.0.1
 selenium==4.19.0
 django-extensions==3.2.3
+pyodbc==5.1.0
+pymssql==2.3.0
+mssql-django==1.4.2
+
+
+

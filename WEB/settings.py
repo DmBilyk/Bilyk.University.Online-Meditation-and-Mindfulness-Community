@@ -109,6 +109,7 @@ environ.Env.read_env()
 
 environ.Env.DB_SCHEMES['mssql'] = 'mssql'
 env = environ.Env(DEBUG=(bool, False))
+
 DEFAULT_DATABASE_URL = f'mssql://lkjhg13:{db_password}@calm-connections.database.windows.net/calm-connections?driver=ODBC+Driver+18+for+SQL+Server'
 
 DATABASE_URL = os.environ.get('DATABASE_URL', DEFAULT_DATABASE_URL)
@@ -117,7 +118,7 @@ os.environ['DJANGO_DATABASE_URL'] = DATABASE_URL.format(**os.environ)
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.dbВ.backends.sqlite3',
+            'ENGINE': 'django.db.backends.sqlite3',
             'NAME': ':memory:',
         }
     }
