@@ -1,7 +1,7 @@
 # forms.py
 
 from django import forms
-from WEB.models import Task, TaskCategory
+from .models import Task, TaskCategory
 
 
 class TaskForm(forms.ModelForm):

@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+import environ
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'WEB',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django_extensions',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -52,9 +55,8 @@ INSTALLED_APPS = [
 
 ]
 
-
-SITE_ID = 1
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SITE_ID = 2
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
 MIDDLEWARE = [
@@ -87,24 +89,46 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'WEB.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+load_dotenv()
+db_password = os.getenv('DB_PASSWORD')
+
+environ.Env.read_env()
+
+environ.Env.DB_SCHEMES['mssql'] = 'mssql'
+env = environ.Env(DEBUG=(bool, False))
+DEFAULT_DATABASE_URL = f'mssql://lkjhg13:{db_password}@calm-connections.database.windows.net/calm-connections?driver=ODBC+Driver+18+for+SQL+Server'
+
+DATABASE_URL = os.environ.get('DATABASE_URL', DEFAULT_DATABASE_URL)
+os.environ['DJANGO_DATABASE_URL'] = DATABASE_URL.format(**os.environ)
+
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.dbВ.backends.sqlite3',
+            'NAME': ':memory:',
+        }
     }
-}
-
-
+else:
+    DATABASES = {
+        'default': env.db('DJANGO_DATABASE_URL', default=DEFAULT_DATABASE_URL)
+    }
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
-    ]
+]
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

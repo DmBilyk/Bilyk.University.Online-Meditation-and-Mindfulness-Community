@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from django.contrib import admin
-from WEB.models import TaskCategory
+from .models import TaskCategory
 
 
 @admin.register(TaskCategory)

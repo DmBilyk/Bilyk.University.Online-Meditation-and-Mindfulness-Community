@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-from WEB.models import Task
+from .models import Task
 from .forms import TaskForm
 from django.contrib import messages
 from django.db.models import Q
