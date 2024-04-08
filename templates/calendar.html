@@ -116,15 +116,28 @@
         <span class="delete-btn" onclick="window.location.href='{% url 'delete_task' task.id %}'">Delete</span>
     </li>
     {% endfor %}
+
+    <!-- Display tasks for the weekly challenge -->
+    {% if weekly_challenge %}
+    <h2>Weekly Challenge</h2>
+    <p>Progress: {{ progress_percentage }}%</p>
+    <ul>
+        {% for task in weekly_challenge.tasks.all %}
+        <li>
+            Day {{ task.day_number }}: {{ task.description }}
+            <input type="checkbox" {% if task.completed %}checked{% endif %}
+                   onclick="window.location.href='{% url 'complete_task' task.id %}'">
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </ul>
 <a href="{% url 'add_task' %}">Add Task</a>
 
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li
-            {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
-    </li>
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}

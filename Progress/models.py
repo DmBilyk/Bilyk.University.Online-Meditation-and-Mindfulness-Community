@@ -1,25 +1,22 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
-from WEB.models import User
 
-
-class TaskCategory(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    color = models.CharField(max_length=7, default='#007bff')  # Default color blue
+class WeeklyChallenge(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField()
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f"Weekly Challenge for {self.user.username}"
 
 
 class Task(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    time = models.TimeField(default=timezone.now().time())
+    challenge = models.ForeignKey(WeeklyChallenge, on_delete=models.CASCADE, related_name='tasks')
+    day_number = models.PositiveIntegerField()
     description = models.CharField(max_length=255)
     completed = models.BooleanField(default=False)
-    last_reset = models.DateTimeField(default=timezone.now)
-    category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.description
+        return f"Day {self.day_number} Task for {self.challenge.user.username}"
