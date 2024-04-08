@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-
+      
       - name: Install dependencies
         run: pip install -r requirements.txt
 
@@ -43,7 +43,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
@@ -53,17 +53,8 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
-      # Manual approval step before deployment
-      - name: 'Wait for approval'
-        if: github.event_name != 'workflow_dispatch'  # Skip manual approval for manual triggers
-        uses: azure/actions/wait-for-approval@v1
-        id: approval
-        with:
-          poll-interval: 10
-          timeout-minutes: 60
 
       - name: 'Deploy to Azure Web App'
-        if: steps.approval.outputs.approved == 'true' || github.event_name == 'workflow_dispatch'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
