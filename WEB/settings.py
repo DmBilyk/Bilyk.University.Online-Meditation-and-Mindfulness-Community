@@ -10,11 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 import os
-from dotenv import load_dotenv
-import environ
 import sys
+from pathlib import Path
+import environ
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +31,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
-
 
 # Application definition
 
@@ -52,12 +51,12 @@ INSTALLED_APPS = [
     'feedback',
     'Forum',
     'Progress',
+    'Challenge',
 
 ]
 
 SITE_ID = 2
 SOCIALACCOUNT_LOGIN_ON_GET = True
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,11 +142,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_UID_FIELD = 'google_id'
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -166,7 +161,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

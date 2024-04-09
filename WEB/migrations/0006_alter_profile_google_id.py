@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('WEB', '0005_rename_profile_id_profile_google_id'),
     ]

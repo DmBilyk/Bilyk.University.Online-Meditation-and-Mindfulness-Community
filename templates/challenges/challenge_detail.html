@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #009688;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #009688;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00796b;
+        }
+
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>{{ challenge.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for task in current_day_tasks %}
+        <input type="checkbox" id="task_{{ task.id }}" name="tasks" value="{{ task.id }}" {% if task in
+               user_challenge.completed_tasks.all %} checked {% endif %}>
+        <label for="task_{{ task.id }}">Day {{ task.day_number }}: {{ task.title }}</label>
+        <p>{{ task.description }}</p>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    <p>Successful days: {{ successful_days }}</p>
+    {% if user_challenge.is_completed %}
+    <p>Congratulations! You have completed the challenge.</p>
+    {% endif %}
+</div>
+</body>
+</html>

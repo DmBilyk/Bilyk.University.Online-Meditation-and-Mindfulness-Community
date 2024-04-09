@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import IO, Generator
+
 from django.shortcuts import get_object_or_404
 
 from .models import Video

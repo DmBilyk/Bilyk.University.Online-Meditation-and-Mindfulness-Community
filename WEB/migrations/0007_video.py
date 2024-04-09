@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('WEB', '0006_alter_profile_google_id'),
     ]
@@ -18,7 +17,8 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100)),
                 ('description', models.TextField()),
                 ('image', models.ImageField(upload_to='image/')),
-                ('file', models.FileField(upload_to='video/', validators=[django.core.validators.FileExtensionValidator(allowed_extensions=['mp4'])])),
+                ('file', models.FileField(upload_to='video/', validators=[
+                    django.core.validators.FileExtensionValidator(allowed_extensions=['mp4'])])),
                 ('create_at', models.DateTimeField(auto_now_add=True)),
             ],
         ),

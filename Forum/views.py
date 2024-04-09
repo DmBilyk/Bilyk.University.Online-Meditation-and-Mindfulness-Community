@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
+
 from .forms import PostForm
 from .models import Post
-from WEB.models import UserProfile
 
 
 def forum_index(request):

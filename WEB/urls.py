@@ -15,14 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path,include
-from . import views
-from django.contrib.auth import views as auth_views
-from .views import edit_profile
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.urls import path, include
 
+from . import views
+from .views import edit_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,12 +33,11 @@ urlpatterns = [
     path('guided-meditation/', views.get_list_video, name='guided-meditation'),
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
-    path('feedback/', include('feedback.urls')),
+    path('', include('feedback.urls')),
     path('forum/', include('Forum.urls')),
     path('', include('Progress.urls')),
-
+    path('', include('Challenge.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

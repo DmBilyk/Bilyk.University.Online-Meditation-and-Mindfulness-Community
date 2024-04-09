@@ -1,26 +1,27 @@
-from django.shortcuts import render ,redirect
-from WEB.models import UserProfile
-from .forms import ProfileForm
-from django.contrib.auth.decorators import login_required
-from .models import Profile
-from django.shortcuts import render, get_object_or_404
-from .models import Video
 import re
 
-#main page
-def home (request):
+from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+
+from WEB.models import UserProfile
+from .forms import ProfileForm
+from .models import Profile
+from .models import Video
+
+
+# main page
+def home(request):
     return render(request, 'home.html', {'user': request.user})
 
 
-#page profile
+# page profile
 def profile_view(request):
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     print("User profile:", user_profile)
     return render(request, 'profile.html', {'user_profile': user_profile})
 
 
-
-#page edit-profile
+# page edit-profile
 def edit_profile(request):
     user = request.user
     try:
@@ -36,6 +37,7 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form})
+
 
 def get_list_video(request):
     videos = Video.objects.all()

@@ -1,7 +1,9 @@
+from allauth.account.signals import user_signed_up
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from allauth.account.signals import user_signed_up
+
 from .models import UserProfile
+
 
 @receiver(user_signed_up)
 def save_profile_data(request, user, **kwargs):
@@ -10,6 +12,7 @@ def save_profile_data(request, user, **kwargs):
             google_email = kwargs['sociallogin'].account.extra_data.get('email')
             google_name = kwargs['sociallogin'].account.extra_data.get('name')
             UserProfile.objects.create(user=user, google_email=google_email, google_name=google_name)
+
 
 @receiver(post_save, sender=UserProfile)
 def update_user_profile(sender, instance, created, **kwargs):

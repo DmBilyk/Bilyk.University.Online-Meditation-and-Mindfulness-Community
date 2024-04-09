@@ -5,5 +5,5 @@ from . import views
 app_name = 'feedback'
 
 urlpatterns = [
-    path('', views.feedback_form, name='main'),
+    path('feedback/', views.feedback_form, name='feedback_form'),
 ]

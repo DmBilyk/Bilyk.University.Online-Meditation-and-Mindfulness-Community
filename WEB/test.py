@@ -1,11 +1,12 @@
-from django.test import TestCase, RequestFactory
-from django.contrib.auth.models import User
-from django.urls import reverse
-from .models import Profile
 import unittest
+
+from django.contrib.auth.models import User
+from django.test import TestCase, RequestFactory
+from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+from .models import Profile
 
 
 class ProfileCustomizationTests(TestCase):

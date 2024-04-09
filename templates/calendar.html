@@ -16,6 +16,20 @@
             color: #333366;
         }
 
+        a {
+            color: #009688;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #009688;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #009688;
+            color: #fff;
+        }
+
         p {
             color: #666666;
         }
@@ -133,6 +147,8 @@
     {% endif %}
 </ul>
 <a href="{% url 'add_task' %}">Add Task</a>
+
+<a href="/challenges/">WEEK CHALLENGES</a>
 
 {% if messages %}
 <ul class="messages">

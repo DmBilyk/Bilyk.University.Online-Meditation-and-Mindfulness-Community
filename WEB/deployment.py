@@ -1,21 +1,14 @@
-import os
 from .settings import *
-from .settings import BASE_DIR
 
-
-
-#This is used as setting.py when deploying to Azure
-
+# This is used as setting.py when deploying to Azure
 
 
 SITE_ID = 1
-
 
 SECRET_KEY = os.environ['SECRET']
 ALLOWED_HOSTS = [os.environ.get('calm-connections.azurewebsites.net')]
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 DEBUG = False
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -29,7 +22,6 @@ MIDDLEWARE = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 conn_str = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
 conn_str_params = {pair.split('=')[0]: pair.split('=')[1] for pair in conn_str.split(' ')}
