@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% include 'navbar.html' %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +9,10 @@
 </head>
 <body>
 <header>
-    <nav>
-        <!-- Navigation links go here -->
-    </nav>
 </header>
 
 <main>
+
     {% block content %}
     {% endblock %}
 </main>

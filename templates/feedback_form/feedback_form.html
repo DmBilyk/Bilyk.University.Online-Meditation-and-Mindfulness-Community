@@ -3,7 +3,8 @@
 {% block title %}Feedback Form{% endblock %}
 
 {% block body %}
-<form action="{% url 'feedback:main' %}" method="POST">
+<form action="{% url 'feedback:feedback_form' %}" method="POST">
+
     {% csrf_token %}
     {{ feedback.as_p }}
     <input type="submit"/>

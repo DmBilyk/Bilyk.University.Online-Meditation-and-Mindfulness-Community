@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .forms import PostForm
-from .models import Post
+from .models import Post, Response
 
 
 def forum_index(request):
@@ -30,3 +30,18 @@ def create_post(request):
     else:
         form = PostForm()
     return render(request, 'forum/create_post.html', {'form': form, 'parent_post_id': parent_post_id})
+
+
+def reply_post(request, post_id):
+    parent_post = Post.objects.get(pk=post_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            message = form.cleaned_data['message']
+            new_response = Response(parent_post=parent_post, message=message)
+            new_response.save()
+            return redirect('forum_index')
+    else:
+        form = PostForm()
+    return render(request, 'forum/reply_post.html', {'form': form, 'parent_post': parent_post})
