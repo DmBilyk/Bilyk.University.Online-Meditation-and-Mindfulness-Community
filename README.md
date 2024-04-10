@@ -10,34 +10,32 @@ dmbilyk3861@gmail.com
 
 https://t.me/@lkjhg13
 
-
 # Project Documentation
 
-
 ## Architecture
+
 The website is developed using Python version 3.11 and is built upon the Django framework version 5.0.3
 
-### List of DB models
-UserProfile
-Profile
-Video
+### List of Applications
 
-### List of Views
-home
-profile_view
-edit_profile
-get_list_video
-get_video
-get_streaming_video
+- Challenge
+- Feedback
+- Forum
+- Progress
+- WEB
 
+### The main program files are located in the WEB directory
 
-### The main program files are located in the WEB directory 
 ### Static files such as photos, javascript scripts, and css styles are located in the static directory
+
 ### Other image files are located in the media directory
+
 ### HTML files are located in the templates directory
 
-#### Additionally 
+#### Additionally
+
 JavaScript, CSS, and HTML are employed to enhance the frontend functionality and presentation.
+-The code was restructured and refactored to make the code cleaner
 
 ## Usage
 To get all the features of the service, you need to have a Google account for simple authorization, one step 
@@ -59,18 +57,30 @@ And go to:
 
 http://127.0.0.1:8000/
 
-
 ## Application Features
-• User Registration: Users can create accounts using their Google credentials, ensuring a seamless onboarding experience.
+
+• User Registration: Users can create accounts using their Google credentials, ensuring a seamless onboarding
+experience.
 
 • Profile Customization: Personalize your profile with information and preferences to tailor your meditation experience.
 
-• Guided Meditation Sessions: Access a library of guided meditation sessions led by experienced instructors, catering to various needs and skill levels.So that each user can choose the meditation they want.
+• Guided Meditation Sessions:Access a library of guided meditation sessions led by experienced instructors, catering to
+various needs and skill levels.So that each user can choose the meditation they want.
+
+• Community Forum:Engage with like-minded individuals, share experiences, and support one another on the path to
+mindfulness.
+
+• Progress Tracking:Monitor your meditation progress, set goals, and track achievements to stay motivated.
+
+• Weekly Challenges: Participate in themed challenges designed to deepen your mindfulness practice and encourage
+consistency.
 
 • Coming soon.
 
 ## Project Task Decomposition
+
 ### Week 1:
+
 - Implement feature: User Registration with Google OAuth 2.0 ✔️
 - Set up Azure environment for project deployment ✔️
 - Initialize GitHub repository for version control ✔️
@@ -108,6 +118,20 @@ http://127.0.0.1:8000/
 
 -Cute loading wheel✔️
 
+## Test results and what was tested
+
+- Main application, home page, stress test of home page with locust
+
+- Chrome Compatibility testing
+
+- Testing the forum for creating posts and replies
+
+- Testing weekly challenges: joining and completing
+
+- Testing feedback forms
+
+-Testing Progress creating a runtime task and deleting it
+
 ### Week 4:
 
 - Expand unit tests to cover profile customization functionality ✔️
@@ -119,6 +143,7 @@ http://127.0.0.1:8000/
 - Conduct testing on Google Chrome PC browsers for compatibility ✔️
 -
 - Review and update documentation in README.md ✔️
+
 
 ## Week 5:
 
@@ -135,6 +160,14 @@ Rewritten deployment logic and fixed static files
 Successfully tested user editing and checking the driver on google chrome
 
 #### - Implement feature: Progress Tracking ✔️
+
+### Week 6:
+
+- Conduct load testing to assess platform performance under stress ✔️
+- Implement feature: Weekly Challenges ✔️
+- Review and update unit tests for new features and functionality ✔️
+- Enhance user interface for intuitive navigation and engagement ✔️
+- Document load testing results and optimizations in README.md ✔️
 
 # Project scheme
 
