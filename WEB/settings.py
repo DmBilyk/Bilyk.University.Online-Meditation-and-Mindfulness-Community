@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'storages',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'feedback',
