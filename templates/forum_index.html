@@ -177,9 +177,10 @@
     <div id="loader"></div>
 </div>
 
+
+{% csrf_token %}
 <div class="forum-container">
     <h1>Forum</h1>
-    <!-- Post List -->
     <ul>
         {% for item in posts_with_responses %}
         <li class="post" id="post-{{ item.post.id }}">
@@ -189,7 +190,8 @@
             <p>{{ item.post.message }}</p>
             {% for response in item.responses %}
             <div class="response">
-                <p>In response to Post #{{ response.parent_post.id }}</p> <!-- Display the parent post ID -->
+                <p>In response to Post #{{ response.parent_post.id }} by {{ response.reply_to.username }}</p>
+                <!-- Display the parent post ID and the user to whom the response is directed -->
                 <p>{{ response.message }}</p>
             </div>
             {% endfor %}

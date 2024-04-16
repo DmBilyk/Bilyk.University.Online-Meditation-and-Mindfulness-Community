@@ -1,7 +1,18 @@
 from django.db import models
 from django.utils import timezone
-
 from WEB.models import User
+
+
+class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    time = models.TimeField()
+    date = models.DateField()
+    link = models.URLField()
+
+    def __str__(self):
+        return self.name
 
 
 class TaskCategory(models.Model):

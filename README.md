@@ -75,6 +75,9 @@ mindfulness.
 • Weekly Challenges: Participate in themed challenges designed to deepen your mindfulness practice and encourage
 consistency.
 
+• Resource Library:Explore articles, videos, and other resources covering topics such as mindfulness techniques, stress
+management, and holistic wellness.-Coming soon.
+
 • Coming soon.
 
 ## Project Task Decomposition
@@ -102,21 +105,52 @@ consistency.
 - Implement feature: Guided Meditation Sessions ✔️
 - Update README.md with project tasks decomposition ✔️
 
-## User Acceptance Testing
 
--The "User Profile" section does not display BIO after saving.✔️
 
--No option to add a profile photo.-
+### Week 4:
 
--The site footer needs to correct "freeback" instead of "freeback".✔️
+- Expand unit tests to cover profile customization functionality ✔️
 
--Forum have no option to reply to a user and create your own wall on a question you interested in.✔️
+- Implement feature: Community ✔️
 
--No "back" button when leaving a page with meditation video from youtube.✔️
+- Integrate feedback system for user interaction ✔️
 
--The section with tasks is useless if it is not logically connected to the parts of the site, which would be a task.✔️
+- Conduct testing on Google Chrome PC browsers for compatibility ✔️
 
--Cute loading wheel✔️
+- Review and update documentation in README.md ✔️
+
+### Week 5:
+
+- Optimize Azure deployment for performance and scalability ✔️
+
+
+- Conduct user acceptance testing to ensure seamless functionality ✔️
+
+- Refactor code for improved readability and maintainability ✔️
+
+- Update README.md with testing procedures and results ✔️
+
+- Implement feature: Progress Tracking ✔️
+
+### Week 6:
+
+- Conduct load testing to assess platform performance under stress ✔️
+- Implement feature: Weekly Challenges ✔️
+- Review and update unit tests for new features and functionality ✔️
+- Enhance user interface for intuitive navigation and engagement ✔️
+- Document load testing results and optimizations in README.md ✔️
+
+### Week 7:
+
+- Implement feature: Resource Library
+
+- Conduct security audit and implement necessary measures ✔️
+
+- Enhance error handling and logging for improved troubleshooting ✔️
+
+- Integrate event calendar functionality with live session scheduling ✔️
+
+- Update README.md with security measures and best practices ✔️
 
 ## Test results and what was tested
 
@@ -130,44 +164,37 @@ consistency.
 
 - Testing feedback forms
 
--Testing Progress creating a runtime task and deleting it
+- Testing Progress creating a runtime task and deleting it
 
-### Week 4:
+### Security
 
-- Expand unit tests to cover profile customization functionality ✔️
--
-- Implement feature: Community ✔️
--
-- Integrate feedback system for user interaction ✔️
--
-- Conduct testing on Google Chrome PC browsers for compatibility ✔️
--
-- Review and update documentation in README.md ✔️
+- Protection against CSRF attacks
 
+- Protection against SQL injection
 
-## Week 5:
+- Created a decorator that is used for each page custom_login_required
 
-#### - Optimize Azure deployment for performance and scalability ✔️
+- All secret keys are stored either in the database or in .env
 
-Rewritten deployment logic and fixed static files
+- The pages are protected from attacks and interference with the site.
 
-#### - Conduct user acceptance testing to ensure seamless functionality ✔️
+- It is impossible for unauthorized users to access certain pages
 
-#### - Refactor code for improved readability and maintainability ✔️
+### User Acceptance Testing
 
-#### - Update README.md with testing procedures and results ✔️
+- The "User Profile" section does not display BIO after saving.✔️
 
-Successfully tested user editing and checking the driver on google chrome
+- No option to add a profile photo.-
 
-#### - Implement feature: Progress Tracking ✔️
+- The site footer needs to correct "freeback" instead of "freeback".✔️
 
-### Week 6:
+- Forum have no option to reply to a user and create your own wall on a question you interested in.✔️
 
-- Conduct load testing to assess platform performance under stress ✔️
-- Implement feature: Weekly Challenges ✔️
-- Review and update unit tests for new features and functionality ✔️
-- Enhance user interface for intuitive navigation and engagement ✔️
-- Document load testing results and optimizations in README.md ✔️
+- No "back" button when leaving a page with meditation video from youtube.✔️
+
+- The section with tasks is useless if it is not logically connected to the parts of the site, which would be a task.✔️
+
+- Cute loading wheel✔️
 
 # Project scheme
 

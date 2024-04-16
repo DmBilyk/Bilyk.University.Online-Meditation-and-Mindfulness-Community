@@ -137,6 +137,8 @@ footer span {
 <div id="loader-wrapper">
     <div id="loader"></div>
 </div>
+
+{% csrf_token %}
 <main>
     {% if user.is_authenticated %}
     <div class="translucent-block">

@@ -16,6 +16,6 @@ class Response(models.Model):
     parent_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='responses')
     message = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
-
+    reply_to = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return f"Response to {self.parent_post}"

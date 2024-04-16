@@ -53,7 +53,7 @@
 
         form input[type="submit"] {
             padding: 10px 15px;
-            background-color: #5cb85c; /* Bootstrap 'success' green */
+            background-color: #5cb85c;
             color: white;
             border: none;
             border-radius: 4px;
@@ -61,7 +61,7 @@
         }
 
         form input[type="submit"]:hover {
-            background-color: #4cae4c; /* Darker green */
+            background-color: #4cae4c;
         }
 
         a {
@@ -142,6 +142,8 @@
 <div class="loader"></div>
 </div>
 
+
+{% csrf_token %}
 <div class="container" id="content">
     {% block body %}{% endblock %}
 </div>

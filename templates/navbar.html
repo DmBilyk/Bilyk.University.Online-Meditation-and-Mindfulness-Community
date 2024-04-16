@@ -166,6 +166,8 @@
 
 
 </style>
+
+{% csrf_token %}
 <div id="navbar" class="container teal borderYtoX">
     <a href="/" class="animated-link">HOME</a>
     {% if user.is_authenticated %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load static %}
 {% include 'navbar.html' %}
 <html lang="en">
 <head>
@@ -130,10 +130,16 @@
 </head>
 <body>
 
+
 <div id="loader-wrapper">
     <div id="loader"></div>
 </div>
+
+
+{% csrf_token %}
+{% if user.is_authenticated %}
 <h1>Today's Tasks</h1>
+
 <p>Completed tasks: {{ completed_tasks_count }} / {{ tasks.count }}</p>
 <ul>
     {% for task in tasks %}
@@ -164,12 +170,30 @@
 
 <a href="/challenges/">WEEK CHALLENGES</a>
 
+<h1>Today's Events</h1>
+<ul>
+    {% for event in events %}
+    <li>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>Time: {{ event.time }}</p>
+        <p>Date: {{ event.date }}</p>
+        <a href="{{ event.link }}">Join Meditation Session</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_event' %}">Create Event</a>
+
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
     <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
+{% endif %}
+
+{% else %}
+<p>You must be logged in to view this page.</p>
 {% endif %}
 </body>
 
@@ -185,4 +209,6 @@
 
 
 </script>
+
+
 </html>
