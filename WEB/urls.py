@@ -19,18 +19,21 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path, include
-
+from django.urls import include
 from . import views
 from .views import edit_profile
+from django.urls import path
+from .views import test_media_storage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('edit-profile/', edit_profile, name='edit_profile'),
     path('profile/', views.profile_view, name='profile'),
+    path('stream/<int:pk>/', views.get_streaming_video, name='stream'),
     path('<int:pk>/', views.get_video, name='video'),
     path('guided-meditation/', views.get_list_video, name='guided-meditation'),
+    path('test-media-storage/', test_media_storage, name='test_media_storage'),
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
     path('', include('feedback.urls')),
@@ -41,3 +44,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

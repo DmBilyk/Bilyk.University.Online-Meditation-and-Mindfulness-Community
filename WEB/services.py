@@ -1,9 +1,8 @@
-from pathlib import Path
+
 from typing import IO, Generator
 from django.shortcuts import get_object_or_404
-
 from .models import Video
-
+from django.core.files.storage import default_storage
 
 def ranged(
         file: IO[bytes],
@@ -30,11 +29,12 @@ def ranged(
 
 def open_file(request, video_pk: int) -> tuple:
     _video = get_object_or_404(Video, pk=video_pk)
+    url = _video.file.url
 
-    path = Path(_video.file.path)
+    print(f"URL: {url}")
 
-    file = path.open('rb')
-    file_size = path.stat().st_size
+    file_size = default_storage.size(url)
+    file = default_storage.open(url, 'rb')
 
     content_length = file_size
     status_code = 200

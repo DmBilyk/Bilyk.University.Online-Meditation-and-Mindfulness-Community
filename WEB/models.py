@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
 from django.db import models
+from django.utils import timezone
 
 
 # Profile model for creating
@@ -36,8 +38,13 @@ class Profile(models.Model):
 class Video(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image_url = models.URLField(default='', blank=True)
-    youtube_link = models.URLField(default='')
+    image = models.ImageField(upload_to='image/')
+    file = models.FileField(
+        upload_to='video/',
+        validators=[FileExtensionValidator(allowed_extensions=['mp4'])],
+        default='default.mp4'
+    )
+    create_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

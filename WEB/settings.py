@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import sys
 from pathlib import Path
-
+import google.auth
+from google.auth.transport.requests import Request
 import environ
 from dotenv import load_dotenv
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'storages',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'feedback',
@@ -189,6 +191,26 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Define the directory where your static files are located
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR]
+
+from django.conf import settings
+from storages.backends.gcloud import GoogleCloudStorage
+from storages.utils import setting
+from urllib.parse import urljoin
+
+###configuration for media file storing and reriving media file from gcloud
+DEFAULT_FILE_STORAGE = 'WEB.gcloud.GoogleCloudMediaFileStorage'
+GS_PROJECT_ID = 'swift-reef-420509'
+GS_BUCKET_NAME = 'calm3861'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/uploads/'
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+
+JSON_KEY_FILE = os.path.join(BASE_DIR, 'keys', '../keys/credential.json')
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = JSON_KEY_FILE
+
+credentials, project = google.auth.default()
+if credentials and credentials.expired and credentials.refresh_token:
+    credentials.refresh(Request())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
