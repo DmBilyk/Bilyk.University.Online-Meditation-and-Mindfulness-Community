@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge List</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <title>Manage Events</title>
     <style>
-
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            padding: 20px;
         }
 
-        div {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            margin: 10px;
-            padding: 20px;
+        .event-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
             border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: #333366;
+            text-align: center;
         }
 
         h2 {
-            color: #009688;
+            margin-top: 0;
+            color: #0074d9;
+        }
+
+        p {
+            color: #666666;
         }
 
         a {
@@ -44,6 +51,39 @@
             color: #fff;
         }
 
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background-color: #0074d9;
+            color: #ffffff;
+            margin-right: 5px;
+        }
+
+        .edit-btn:hover {
+            background-color: #005ea6;
+        }
+
+        .delete-btn {
+            background-color: #ff4136;
+            color: #ffffff;
+        }
+
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
 
         #navbar {
             background: #009688;
@@ -188,22 +228,25 @@
     <a href="/" class="animated-link">HOME</a>
 
 </div>
-{% for challenge in challenges %}
-<div>
-    <h2>{{ challenge.title }}</h2>
-    <p>{{ challenge.start_date }} - {{ challenge.end_date }}</p>
-    <a href="{% url 'join_challenge' challenge.id %}">Join Challenge</a>
-    <div>
-        <!-- Facebook Share Button -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}join/{{ challenge.id }}/"
-           target="_blank">
-            <i class="fab fa-facebook-square"></i> Share on Facebook
-        </a>
-        <!-- Twitter Share Button -->
-        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}join/{{ challenge.id }}/ &text=Check out this challenge!"
-           target="_blank">
-            <i class="fab fa-twitter-square"></i> Share on Twitter
-        </a>
+<h1>Manage Events</h1>
+{% for event in events %}
+<div class="event-container">
+    <h2>{{ event.name }}</h2>
+    <p>{{ event.description }}</p>
+    <p>Time: {{ event.time }}</p>
+    <p>Date: {{ event.date }}</p>
+    <a href="{{ event.link }}">{{ event.link }}</a>
+    <div class="btn-container">
+        <!-- Edit Event Form -->
+        <form method="post" action="{% url 'edit_event' event.id %}">
+            {% csrf_token %}
+            <button type="submit" class="edit-btn">Edit</button>
+        </form>
+        <!-- Delete Event Form -->
+        <form method="post" action="{% url 'delete_event' event.id %}">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn">Delete</button>
+        </form>
     </div>
 </div>
 {% endfor %}

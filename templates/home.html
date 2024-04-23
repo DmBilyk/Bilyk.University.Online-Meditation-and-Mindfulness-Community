@@ -3,6 +3,7 @@
 {% load socialaccount %}
 {% include 'navbar.html' %}
 
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,16 +23,20 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-.translucent-block {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        #phone_navbar {
+            display: none;
+        }
 
-.main-text {
+        .translucent-block {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-text {
     color: white;
     text-align: center;
     font-size: 24px;
@@ -128,7 +133,115 @@ footer span {
             }
         }
 
+        @media screen and (max-width: 600px) {
+            body {
+                margin: 0;
+                padding: 0;
+                background-image: url("https://images5.alphacoders.com/356/356140.jpg");
+                background-size: cover;
+                background-position: center;
+                font-family: 'Raleway', sans-serif;
+            }
 
+            .translucent-block {
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .main-text {
+                color: white;
+                text-align: center;
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            header h1 {
+                color: #AAA;
+                font-size: 40px;
+                font-weight: lighter;
+                margin-bottom: 20px;
+            }
+
+            header span {
+                color: #222;
+            }
+
+            footer span {
+                color: #AAA;
+            }
+
+            .copyright-area {
+                background: #202020;
+                padding: 25px 0;
+                text-align: center;
+            }
+
+            .copyright-text p {
+                margin: 0;
+                font-size: 14px;
+                color: #878787;
+            }
+
+            .copyright-text p a {
+                color: #009688;
+            }
+
+            #loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            #loader {
+                position: relative;
+                left: 50%;
+                top: 50%;
+                width: 150px;
+                height: 150px;
+                margin: -75px 0 0 -75px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #25b09b;
+                animation: spin 2s linear infinite;
+            }
+
+            #loader:before {
+                content: "";
+                position: absolute;
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #25b09b;
+                animation: spin 3s linear infinite;
+            }
+
+            #loader:after {
+                content: "";
+                position: absolute;
+                top: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #25b09b;
+                animation: spin 1.5s linear infinite;
+            }
+
+
+        }
 
 
 </style>
@@ -193,6 +306,7 @@ footer span {
     </div>
 </footer>
 
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -205,5 +319,6 @@ footer span {
 
 
 </script>
+
 
 </html>

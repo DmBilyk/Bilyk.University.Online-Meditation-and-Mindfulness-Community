@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
 
         #navbar {
@@ -176,6 +177,20 @@
             margin-right: 10px;
         }
 
+        a {
+            color: #009688;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #009688;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #009688;
+            color: #fff;
+        }
+
         button {
             background-color: #009688;
             color: #fff;
@@ -208,12 +223,25 @@
     <form method="post">
         {% csrf_token %}
         {% for task in current_day_tasks %}
-        <input type="checkbox" id="task_{{ task.id }}" name="tasks" value="{{ task.id }}" {% if task in user_challenge.completed_tasks.all %} checked {% endif %}>
+        <input type="checkbox" id="task_{{ task.id }}" name="tasks" value="{{ task.id }}" {% if task in
+               user_challenge.completed_tasks.all %} checked {% endif %}>
         <label for="task_{{ task.id }}">Day {{ task.day_number }}: {{ task.title }}</label>
         <p>{{ task.description }}</p>
         {% endfor %}
         <button type="submit">Submit</button>
     </form>
+    <div>
+        <!-- Facebook Share Button -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{% url 'join_challenge' challenge.id %}"
+           target="_blank">
+            <i class="fab fa-facebook-square"></i> Share on Facebook
+        </a>
+        <!-- Twitter Share Button -->
+        <a href="https://twitter.com/intent/tweet?url={{ request.scheme }}://{{ request.get_host }}{% url 'join_challenge' challenge.id %}&text=Check out this challenge!"
+           target="_blank">
+            <i class="fab fa-twitter-square"></i> Share on Twitter
+        </a>
+    </div>
     <p>Successful days: {{ successful_days }}</p>
     {% if user_challenge.is_completed %}
     <p>Congratulations! You have completed the challenge.</p>

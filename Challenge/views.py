@@ -40,6 +40,18 @@ def challenge_detail(request, challenge_id):
         challenge = get_object_or_404(WeeklyChallenge, id=challenge_id)
         user_challenge = get_object_or_404(UserChallenge, user=request.user, challenge=challenge)
 
+        if request.method == 'POST':
+            task_ids = request.POST.getlist('tasks')
+            for task_id in task_ids:
+                task = get_object_or_404(DayTask, id=task_id)
+                user_challenge.completed_tasks.add(task)
+            user_challenge.save()
+
+            # Check if all tasks are completed
+            if user_challenge.completed_tasks.count() == challenge.tasks.count():
+                user_challenge.is_completed = True
+                user_challenge.save()
+
         time_difference = timezone.now() - user_challenge.join_date
         current_day = time_difference.days + 1
 

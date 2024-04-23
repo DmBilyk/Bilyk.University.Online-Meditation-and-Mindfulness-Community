@@ -17,6 +17,7 @@ import google.auth
 from google.auth.transport.requests import Request
 import environ
 from dotenv import load_dotenv
+from google.oauth2 import service_account
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -198,6 +199,22 @@ from storages.utils import setting
 from urllib.parse import urljoin
 
 ###configuration for media file storing and reriving media file from gcloud
+
+
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+#     }
+# }
+# GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+#     os.path.join(BASE_DIR, 'keys/credential.json')
+# )
+# GS_BUCKET_NAME = 'calm3861'
+
+
 DEFAULT_FILE_STORAGE = 'WEB.gcloud.GoogleCloudMediaFileStorage'
 GS_PROJECT_ID = 'swift-reef-420509'
 GS_BUCKET_NAME = 'calm3861'

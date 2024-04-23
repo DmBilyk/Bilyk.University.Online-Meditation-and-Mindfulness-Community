@@ -74,12 +74,21 @@
     </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+</head>
+<body>
 <h1>Add Event</h1>
-<form method="post">
+<form id="eventForm" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add Event</button>
+    <button type="submit">Save</button>
 </form>
 <a href="{% url 'calendar' %}">Back to Calendar</a>
+
 </body>
 </html>

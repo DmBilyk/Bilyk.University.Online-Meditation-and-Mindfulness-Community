@@ -16,15 +16,8 @@
       </div>
       <div class="row">
         <div class="col-md-12 col-sm-12">
-          <video
-                  id="my-video"
-                  class="video-js"
-                  controls
-                  preload="auto"
-          >
-            <source src="{% url 'stream' video.id %}" type="video/mp4"/>
-            <source src="{% url 'stream' video.id %}" type="video/webm"/>
-          </video>
+            <iframe width="1000" height="800" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0"
+                    allowfullscreen></iframe>
         </div>
       </div>
     </div>

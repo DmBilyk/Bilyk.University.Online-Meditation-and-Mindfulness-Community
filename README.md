@@ -78,6 +78,8 @@ consistency.
 • Resource Library:Explore articles, videos, and other resources covering topics such as mindfulness techniques, stress
 management, and holistic wellness.-Coming soon.
 
+• Event Calendar:Stay up-to-date on upcoming meditation sessions, workshops, and community events to plan your
+
 • Coming soon.
 
 ## Project Task Decomposition
@@ -152,6 +154,18 @@ management, and holistic wellness.-Coming soon.
 
 - Update README.md with security measures and best practices ✔️
 
+### Week 8:
+
+- Implement feature: Event Calendar ✔️
+
+- Conduct code review and address any identified issues or vulnerabilities ✔️
+
+- Perform accessibility testing to ensure inclusivity ✔️
+
+- Implement social sharing functionality for user engagement ✔️
+
+- Document accessibility features and testing results in README.md ✔️
+
 ## Test results and what was tested
 
 - Main application, home page, stress test of home page with locust
@@ -165,6 +179,36 @@ management, and holistic wellness.-Coming soon.
 - Testing feedback forms
 
 - Testing Progress creating a runtime task and deleting it
+
+- Testing the profile page for saving and displaying information
+
+- Testing the meditation page for displaying videos
+
+- Testing the event calendar for creating and deleting events
+
+- Testing the resource library for creating and deleting resources
+
+- Testing the user registration page
+
+### Where identified issues or vulnerabilities
+
+- Week Challenges: The user can join the challenge multiple times, which is not correct
+
+- Week Challenges: Not work success button and not show the user's progress
+
+### Inclusive Test
+
+- The website is accessible to all users, including those with disabilities.
+
+- Tab navigation is enabled for users who rely on keyboard navigation.
+
+- Blue color is used to highlight active links and buttons.
+
+- Daltonism is taken into account when choosing colors.
+
+- Accessibility features are implemented to ensure a seamless user experience for all users.
+
+- No flashing or blinking content is present to avoid triggering seizures.
 
 ### Security
 

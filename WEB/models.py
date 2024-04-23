@@ -48,3 +48,13 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Video_Youtube(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image_url = models.URLField(default='', blank=True)
+    youtube_link = models.URLField(default='')
+
+    def __str__(self):
+        return self.title

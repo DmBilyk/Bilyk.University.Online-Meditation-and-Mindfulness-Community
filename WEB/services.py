@@ -3,7 +3,7 @@ from typing import IO, Generator
 from django.shortcuts import get_object_or_404
 from .models import Video
 from django.core.files.storage import default_storage
-
+from urllib.parse import urlparse
 def ranged(
         file: IO[bytes],
         start: int = 0,
@@ -33,8 +33,12 @@ def open_file(request, video_pk: int) -> tuple:
 
     print(f"URL: {url}")
 
-    file_size = default_storage.size(url)
-    file = default_storage.open(url, 'rb')
+    # Parse the URL and get the path
+    path = urlparse(url).path.lstrip('/')
+    print(f"Path: {path}")
+
+    file_size = default_storage.size(path)
+    file = default_storage.open(path, 'rb')
 
     content_length = file_size
     status_code = 200
