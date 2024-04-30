@@ -7,10 +7,10 @@ from .models import Profile
 from django.shortcuts import render, get_object_or_404
 import re
 from .models import Video_Youtube
-from django.http import HttpResponse
-from django.core.mail import send_mail
-from django.conf import settings
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
