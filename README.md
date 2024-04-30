@@ -166,6 +166,28 @@ management, and holistic wellness.-Coming soon.
 
 - Document accessibility features and testing results in README.md ✔️
 
+### Week 9:
+
+- Implement feature: Feedback System ✔️
+- Implement notification center for user communication ✔️
+- Enhance documentation with comprehensive user guides and FAQs ✔️
+- Conduct performance testing to optimize platform responsiveness ✔️
+- Update README.md with performance testing results and optimizations ✔️
+
+### Test Performance Results
+
+- The website was tested using the Locust tool to simulate user traffic and assess performance under stress.
+- The website was able to handle 1000 concurrent users with an average response time of 0.5 seconds.
+- The website maintained a stable performance throughout the test, with no errors or downtime reported.
+
+#### Test Results
+
+- Executed the forum view in 0.013176458000089042 seconds
+- Executed the calendar view in 0.0021621250052703544 seconds
+- Executed the faq view in 0.0015655419992981479 seconds
+- Executed the home view in 0.0013529169955290854 seconds
+- Executed the profile view in 0.002656459007994272 seconds
+
 ## Test results and what was tested
 
 - Main application, home page, stress test of home page with locust

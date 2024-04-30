@@ -4,37 +4,20 @@ from .decorators import custom_login_required
 from WEB.models import UserProfile
 from .forms import ProfileForm
 from .models import Profile
-from django.http import StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Video
-from .services import open_file
 import re
-from django.http import HttpResponse
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 from .models import Video_Youtube
-
-
-def test_media_storage(request):
-    # Create a simple text file content
-    file_content = ContentFile("Hello, World!".encode())
-
-    # Save the file to media storage
-    file_name = default_storage.save('test.txt', file_content)
-
-    # Try to open the file from media storage
-    with default_storage.open(file_name) as f:
-        file_data = f.read()
-
-    # Delete the test file
-    default_storage.delete(file_name)
-
-    # Return the file data in the response
-    return HttpResponse(file_data)
-
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import HttpResponse
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def faq(request):
+    return render(request, 'faq.html')
 
 
 def home(request):

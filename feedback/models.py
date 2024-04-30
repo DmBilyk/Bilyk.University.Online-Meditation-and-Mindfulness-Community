@@ -15,6 +15,7 @@ class Feedback(models.Model):
     details = models.TextField()
     happy = models.BooleanField()
     date = models.DateField(auto_now_add=True)
+    response_message = models.TextField(blank=True)
 
     def __str__(self):
         return self.customer_name

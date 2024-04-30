@@ -17,24 +17,27 @@ def challenge_list(request):
         logger.error(e)
         return render(request, 'challenges/challenge_list.html', {'challenges': []})
 
-
+@custom_login_required
 def join_challenge(request, challenge_id):
     try:
+        logger.info('Join challenge function called')
         challenge = get_object_or_404(WeeklyChallenge, id=challenge_id)
+        logger.info(f'Challenge found: {challenge}')
         user_challenge, created = UserChallenge.objects.get_or_create(user=request.user, challenge=challenge)
+        logger.info(f'User challenge: {user_challenge}, Created: {created}')
 
         if not created and user_challenge.is_joined:
+            logger.info('User has already joined this challenge')
             return redirect('challenge_detail', challenge_id=challenge.id)
 
         user_challenge.is_joined = True
         user_challenge.save()
+        logger.info('User has joined the challenge')
 
         return redirect('challenge_detail', challenge_id=challenge.id)
     except Exception as e:
-        logger.error(e)
+        logger.error(f'Error joining challenge: {e}')
         return redirect('challenge_list')
-
-
 def challenge_detail(request, challenge_id):
     try:
         challenge = get_object_or_404(WeeklyChallenge, id=challenge_id)

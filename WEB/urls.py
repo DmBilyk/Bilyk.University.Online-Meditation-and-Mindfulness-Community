@@ -23,7 +23,6 @@ from django.urls import include
 from . import views
 from .views import edit_profile
 from django.urls import path
-from .views import test_media_storage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +31,7 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('<int:pk>/', views.get_video, name='video'),
     path('guided-meditation/', views.get_list_video, name='guided-meditation'),
+    path('faq/', views.faq, name='faq'),
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
     path('', include('feedback.urls')),

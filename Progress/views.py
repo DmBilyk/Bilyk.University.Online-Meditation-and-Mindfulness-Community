@@ -2,21 +2,41 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseServerError
-from .models import Task, Event
-import datetime
+from .models import Task
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from WEB.decorators import custom_login_required
 import logging
-
 from .forms import EventForm, TaskForm
-
-from django.http import JsonResponse
-from django.views import View
 from django.utils import timezone
 from .models import Event
+from django.core.mail import send_mail
+from django.conf import settings
+from WEB.models import User
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def send_event_notification(user_id, event, notification_time):
+    user = User.objects.get(id=user_id)
+
+    recipient_email = user.email
+    subject = f'Notification for event: {event.name}'
+    body = f'Dear {user.username},\n\nYou have an upcoming event: {event.name} at {event.time} on {event.date}.\n\nDescription: {event.description}\n\nLink: {event.link}'
+
+    if datetime.now() >= notification_time:
+        try:
+            send_mail(
+                subject,
+                body,
+                settings.EMAIL_HOST_USER,
+                [recipient_email],
+                fail_silently=False,
+            )
+            print('Email sent successfully')
+        except Exception as e:
+            print(f'An error occurred while sending email: {e}')
 
 
 @custom_login_required
@@ -161,13 +181,10 @@ def delete_task(request, task_id):
 @custom_login_required
 def delete_event(request, event_id):
     try:
-        # Retrieve the event object
         event = get_object_or_404(Event, id=event_id, user=request.user)
 
-        # Delete the event
         event.delete()
 
-        # Redirect to the manage_events view
         return redirect('manage_events')
     except Exception as e:
         logger.error(e)

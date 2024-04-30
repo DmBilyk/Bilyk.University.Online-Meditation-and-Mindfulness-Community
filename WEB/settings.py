@@ -17,7 +17,7 @@ import google.auth
 from google.auth.transport.requests import Request
 import environ
 from dotenv import load_dotenv
-from google.oauth2 import service_account
+import certifi
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_cron',
     'allauth',
     'allauth.account',
     'storages',
@@ -214,6 +215,9 @@ from urllib.parse import urljoin
 # )
 # GS_BUCKET_NAME = 'calm3861'
 
+DJANGO_CRON_CLASSES = [
+    'WEB.cron.EventNotificationCronJob',
+]
 
 DEFAULT_FILE_STORAGE = 'WEB.gcloud.GoogleCloudMediaFileStorage'
 GS_PROJECT_ID = 'swift-reef-420509'
@@ -233,3 +237,13 @@ if credentials and credentials.expired and credentials.refresh_token:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+os.environ['SSL_CERT_FILE'] = certifi.where()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')

@@ -2,7 +2,9 @@ import pytest
 from django.test import RequestFactory
 from django.contrib.auth.models import AnonymousUser, User
 from .views import create_post
-from .forms import PostForm
+from django.test import TestCase, Client
+from django.contrib.auth.models import User
+import timeit
 from .models import Post
 
 
@@ -57,3 +59,23 @@ def test_create_post_with_nonexistent_parent_post(factory, user):
     response = create_post(request)
     assert response.status_code == 200
     assert Post.objects.count() == 0
+
+
+class TestForumViewPerformance(TestCase):
+    def setUp(self):
+        self.client = Client()
+        # Create a user
+        self.user = User.objects.create_user(username='testuser', password='testpass')
+
+    def test_forum_view_performance(self):
+        # Log in the user
+        self.client.login(username='testuser', password='testpass')
+
+        start_time = timeit.default_timer()
+        response = self.client.get('/forum/')
+        end_time = timeit.default_timer()
+
+        execution_time = end_time - start_time
+        print(f"Executed the forum view in {execution_time} seconds")
+
+        self.assertEqual(response.status_code, 200)
