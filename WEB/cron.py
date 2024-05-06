@@ -9,7 +9,7 @@ from django.utils import timezone
 
 
 class EventNotificationCronJob(CronJobBase):
-    RUN_EVERY_MINS = 30
+    RUN_EVERY_MINS = 10
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'event_notification_cron_job'

@@ -291,7 +291,7 @@ h5 {
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #25b09b;
+    border-top-color: #343148;
     animation: spin 2s linear infinite;
 }
 
@@ -304,7 +304,7 @@ h5 {
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #25b09b;
+    border-top-color: #343148;
     animation: spin 3s linear infinite;
 }
 
@@ -317,7 +317,7 @@ h5 {
     bottom: 15px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #25b09b;
+    border-top-color: #343148;
     animation: spin 1.5s linear infinite;
 }
 
@@ -350,15 +350,15 @@ h5 {
 .site-top {
     position: relative;
     z-index: 4;
-    *background: #009688;
-    background: #009688;
+    *background: #343148;
+    background: #343148;
     margin-bottom: 40px;
     padding-bottom: 60px;
 }
 
 .site-header {
     padding-top: 40px;
-    background: #009688;
+    background: #343148;
 }
 
 .site-brand {
@@ -457,7 +457,7 @@ h5 {
     left: 0;
     visibility: hidden;
     opacity: 0;
-    background: #009688;
+    background: #343148;
     -webkit-transition: all 150ms ease-in-out;
     -moz-transition: all 150ms ease-in-out;
     -ms-transition: all 150ms ease-in-out;

@@ -68,7 +68,6 @@ class TestForumViewPerformance(TestCase):
         self.user = User.objects.create_user(username='testuser', password='testpass')
 
     def test_forum_view_performance(self):
-        # Log in the user
         self.client.login(username='testuser', password='testpass')
 
         start_time = timeit.default_timer()

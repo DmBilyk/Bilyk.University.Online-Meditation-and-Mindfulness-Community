@@ -2,7 +2,16 @@
 {% load static %}
 {% block content %}
 
-<div class="main-posts">
+
+<style>
+
+    #main_video_list {
+        margin-top: 125px;
+        background-color: #fed1d1;
+    }
+
+</style>
+<div class="main-posts" id="main_video_list">
     <div class="container">
         <div class="row">
             <div class="blog-masonry masonry-true">
@@ -14,7 +23,7 @@
                         {% else %}
                         <img src="{% static 'images/bg.jpg' %}" alt="Default Image">
                         {% endif %}
-                        <div class="title-over">
+                        <div class="post-hover text-center">
                             <h4>{{ video.title }}</h4>
                         </div>
                         <div class="post-hover text-center">

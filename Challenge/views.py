@@ -50,7 +50,6 @@ def challenge_detail(request, challenge_id):
                 user_challenge.completed_tasks.add(task)
             user_challenge.save()
 
-            # Check if all tasks are completed
             if user_challenge.completed_tasks.count() == challenge.tasks.count():
                 user_challenge.is_completed = True
                 user_challenge.save()

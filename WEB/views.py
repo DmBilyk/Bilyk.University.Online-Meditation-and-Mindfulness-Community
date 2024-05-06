@@ -4,13 +4,10 @@ from .decorators import custom_login_required
 from WEB.models import UserProfile
 from .forms import ProfileForm
 from .models import Profile
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 import re
 from .models import Video_Youtube
 from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
