@@ -40,7 +40,7 @@ class UserChallenge(models.Model):
         return f"{self.user.username} - {self.challenge.title}"
 
     def is_completed(self):
-        return self.completed_tasks.count() >= self.challenge.tasks.count() // 2
-
-    def __str__(self):
-        return f"{self.user.username} - {self.challenge.title}"
+        total_tasks_count = sum(
+            task.day_number <= (timezone.now() - self.join_date).days + 1 for task in self.challenge.tasks.all())
+        completed_tasks_count = self.completed_tasks.count()
+        return total_tasks_count > 0 and completed_tasks_count >= total_tasks_count // 2

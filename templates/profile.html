@@ -1,35 +1,59 @@
-
-
 <!DOCTYPE html>
 
 
-{% include 'navbar.html' %}
+{% load static %}
 {% load socialaccount %}
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+
     <style>
-    @import 'https://fonts.googleapis.com/css?family=Raleway';
+        @import 'https://fonts.googleapis.com/css?family=Raleway';
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-    background-position: center;
-    font-family: 'Raleway', sans-serif; /* Added font-family */
-}
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Raleway', sans-serif; /* Added font-family */
+        }
 
-.translucent-block {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    min-height: 100vh; /* Changed height to min-height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+        #main-profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+
+        .translucent-block {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            min-height: 100vh; /* Changed height to min-height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 .main-text {
     color: white;
@@ -229,6 +253,28 @@ footer span {
     }
 
 
+        @media (min-width: 992px) {
+            .navbar {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                padding: 20px 60px;
+                background: #343148 !important;
+                z-index: 9;
+            }
+
+            .navbar.nav-sticky {
+                padding: 10px 60px;
+                background: #343148 !important;
+            }
+
+            .navbar a.nav-link {
+                padding: 8px 15px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
     </style>
 </head>
 <body>
@@ -239,41 +285,86 @@ footer span {
 
 
 {% csrf_token %}
-<div class="profile-card">
-    <h1>User Profile</h1>
-    <p>Name: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    {% if user.profile %}
-    {% if user.profile.age %}
-    <p>Age: {{ user.profile.age }}</p>
-    {% endif %}
-    {% if user.profile.bio %}
-    <p>BIO: {{ user.profile.bio }}</p>
-    {% endif %}
-    {% if user.profile.country %}
-    <p>Country: {{ user.profile.get_country_display }}</p>
-    {% endif %}
-    {% if user.profile.level %}
-    <p>Level: {{ user.profile.get_level_display }}</p>
-    {% endif %}
-    {% endif %}
-    <a class="my-button" href="/edit-profile/">Edit profile</a>
-</div>
+
+
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm<span> - </span>Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link active" href="/forum/">Forum</a>
+                <a class="nav-item nav-link" href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
     </div>
-          <footer>
-      <div class="copyright-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                <div class="copyright-text">
-                    <p>2024 Calm Connections. All rights reserved.</p>
+</div>
+
+<div id="main-profile-info">
+    <div class="profile-card">
+        <h1>User Profile</h1>
+        <p>Name: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        {% if user.profile %}
+        {% if user.profile.age %}
+        <p>Age: {{ user.profile.age }}</p>
+        {% endif %}
+        {% if user.profile.bio %}
+        <p>BIO: {{ user.profile.bio }}</p>
+        {% endif %}
+        {% if user.profile.country %}
+        <p>Country: {{ user.profile.get_country_display }}</p>
+        {% endif %}
+        {% if user.profile.level %}
+        <p>Level: {{ user.profile.get_level_display }}</p>
+        {% endif %}
+        {% endif %}
+        <a class="my-button" href="/edit-profile/">Edit profile</a>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="footer-info">
+                <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
+                <div class="footer-menu">
+                    <p>+380 68 278 9501</p>
+                    <p>dmbilyk3861@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; <a href="https://calm-connections.azurewebsites.net/">Calm-Connections</a>, All Right
+                        Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
                 </div>
             </div>
         </div>
     </div>
-      </div>
-
-          </footer>
+</div>
 
 </body>
 
@@ -287,4 +378,16 @@ footer span {
 
 
 </script>
+
+
+<script src='https://fullcalendar.io/releases/main/base.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
+
 </html>

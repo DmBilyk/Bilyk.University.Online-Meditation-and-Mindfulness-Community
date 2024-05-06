@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge Detail</title>
+    <title>Challenge Detail - Calm-Connections</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
 
@@ -230,6 +230,11 @@
         {% endfor %}
         <button type="submit">Submit</button>
     </form>
+    <p>Successful days: {{ successful_days }}</p>
+    {% if user_challenge.is_completed %}
+    <p>Congratulations! You have completed the challenge.</p>
+    {% endif %}
+</div>
     <div>
         <!-- Facebook Share Button -->
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.scheme }}://{{ request.get_host }}{% url 'join_challenge' challenge.id %}"
@@ -241,12 +246,7 @@
            target="_blank">
             <i class="fab fa-twitter-square"></i> Share on Twitter
         </a>
-    </div>
-    <p>Successful days: {{ successful_days }}</p>
-    {% if user_challenge.is_completed %}
-    <p>Congratulations! You have completed the challenge.</p>
-    {% endif %}
-</div>
 
+    </div>
 </body>
 </html>

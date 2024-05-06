@@ -19,7 +19,11 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar</title>
+    <title>Events Schedule - Calm-Connections</title>
+    <meta content="Check out our upcoming events schedule for meditation sessions, mindfulness workshops, and community gatherings. Join us for a journey of self-discovery and spiritual growth."
+          name="description">
+    <meta content="events schedule, meditation sessions, mindfulness workshops, community gatherings, self-discovery"
+          name="keywords">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -192,10 +196,10 @@
 {% csrf_token %}
 {% if user.is_authenticated %}
 
-<!-- Nav Bar Start -->
+
 <div class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Calm - Connections</a>
+        <a class="navbar-brand" href="/">Calm - Connections</a>
         <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -221,8 +225,8 @@
         {% for task in tasks %}
         <li>
             {{ task.description }}
-            <input %} %}checked{% endif if onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
-                   {%>
+            <input %} %}checked{% endif if
+                   onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox" {%>
             <span class="delete-btn" onclick="window.location.href='{% url 'delete_task' task.id %}'">Delete</span>
         </li>
         {% endfor %}
@@ -235,7 +239,8 @@
             {% for task in weekly_challenge.tasks.all %}
             <li>
                 Day {{ task.day_number }}: {{ task.description }}
-                <input %} %}checked{% endif if onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
+                <input %} %}checked{% endif if
+                       onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
                        {%>
             </li>
             {% endfor %}
@@ -275,17 +280,17 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
-                    <a class="footer-logo" href="index.html">Calm<span> - </span>Connections</a>
+                    <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
                     <div class="footer-menu">
                         <p>+380 68 278 9501</p>
-                        <p>info@example.com</p>
+                        <p>dmbilyk3861@gmail.com</p>
                     </div>
                     <div class="footer-social">
                         <a href=""><i class="fab fa-twitter"></i></a>
                         <a href=""><i class="fab fa-facebook-f"></i></a>
                         <a href=""><i class="fab fa-youtube"></i></a>
                         <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
                     </div>
                 </div>
             </div>
