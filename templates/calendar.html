@@ -192,10 +192,10 @@
 {% csrf_token %}
 {% if user.is_authenticated %}
 
-<!-- Nav Bar Start -->
+
 <div class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">Calm - Connections</a>
+        <a class="navbar-brand" href="/">Calm - Connections</a>
         <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -221,8 +221,8 @@
         {% for task in tasks %}
         <li>
             {{ task.description }}
-            <input %} %}checked{% endif if onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
-                   {%>
+            <input %} %}checked{% endif if
+                   onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox" {%>
             <span class="delete-btn" onclick="window.location.href='{% url 'delete_task' task.id %}'">Delete</span>
         </li>
         {% endfor %}
@@ -235,7 +235,8 @@
             {% for task in weekly_challenge.tasks.all %}
             <li>
                 Day {{ task.day_number }}: {{ task.description }}
-                <input %} %}checked{% endif if onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
+                <input %} %}checked{% endif if
+                       onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
                        {%>
             </li>
             {% endfor %}
@@ -275,7 +276,7 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="footer-info">
-                    <a class="footer-logo" href="index.html">Calm<span> - </span>Connections</a>
+                    <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
                     <div class="footer-menu">
                         <p>+380 68 278 9501</p>
                         <p>info@example.com</p>
