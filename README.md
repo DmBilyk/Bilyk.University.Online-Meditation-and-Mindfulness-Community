@@ -14,7 +14,9 @@ https://t.me/@lkjhg13
 
 ## Architecture
 
+
 The website is developed using Python version 3.11 and is built upon the Django framework version 5.0.3
+
 
 ### List of Applications
 
@@ -81,6 +83,15 @@ management, and holistic wellness.-Coming soon.
 • Event Calendar:Stay up-to-date on upcoming meditation sessions, workshops, and community events to plan your
 
 • Coming soon.
+
+• Feedback System:Provide feedback on your meditation experience, suggest improvements, and share your thoughts with
+the community.
+
+• User Support:Access user support resources, FAQs, and contact information to get help when needed.
+
+• Notification Center:Receive notifications about upcoming events, challenges, and community updates to stay informed.
+
+• Social Sharing:Share your meditation journey, achievements, and insights with friends and followers on social media.
 
 ## Project Task Decomposition
 
@@ -174,6 +185,28 @@ management, and holistic wellness.-Coming soon.
 - Conduct performance testing to optimize platform responsiveness ✔️
 - Update README.md with performance testing results and optimizations ✔️
 
+### Week 10:
+
+- Implement feature: User Support ✔️
+- Fine-tune platform based on user feedback and testing results ✔️
+- Conduct regression testing to ensure new features do not impact existing functionality ✔️
+- Prepare for public release and marketing efforts ✔️
+- Update README.md with final project documentation and release notes ✔️
+
+# Release Notes:
+
+- The website is now live and accessible to the public at https://calm-connections.azurewebsites.net
+- Users can register for an account using their Google credentials and access a range of features to support their
+  mindfulness journey.
+- The platform offers guided meditation sessions, a community forum, progress tracking, weekly challenges, and more to
+  help users cultivate mindfulness and holistic wellness.
+- Users can customize their profiles, participate in community discussions, and engage with like-minded individuals to
+  share experiences and support one another.
+- The website is optimized for performance and scalability, ensuring a seamless user experience for all users.
+- The platform is secure and protected against common vulnerabilities, ensuring user data is safe and protected.
+- The website is accessible to all users, including those with disabilities, and features inclusive design elements to
+  ensure a seamless user experience for all users.
+
 ### Test Performance Results
 
 - The website was tested using the Locust tool to simulate user traffic and assess performance under stress.
@@ -264,4 +297,11 @@ management, and holistic wellness.-Coming soon.
 
 # Project scheme
 
-![img.png](img.png)
+- The project is divided into 5 applications, each of which is responsible for its own functionality.
+- The WEB application is responsible for the main functionality of the site, such as the main page, profile, and other
+  pages.
+- The Challenge application is responsible for the challenges that the user can take part in.
+- The Feedback application is responsible for user feedback.
+- The Forum application is responsible for the forum where users can communicate with each other.
+- The Progress application is responsible for the user's progress in meditation.
+  ![img.png](img.png)
