@@ -23,6 +23,11 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
+      - name: Install Django
+        run: |
+          source venv/bin/activate
+          pip install Django
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
@@ -36,6 +41,7 @@ jobs:
           path: |
             release.zip
             !venv/
+
 
   deploy:
     runs-on: ubuntu-latest
