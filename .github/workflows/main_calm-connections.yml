@@ -61,7 +61,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0823C65F2D314762895407B01620CB98 }}
 
-      - name: Collect static files
-        run: |
-          source venv/bin/activate
-          python manage.py collectstatic --noinput
