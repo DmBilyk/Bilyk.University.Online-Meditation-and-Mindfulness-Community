@@ -1,14 +1,16 @@
+import timeit
 import unittest
+
+from allauth.socialaccount.models import SocialApp
 from django.contrib.auth.models import User
-from django.test import TestCase, RequestFactory
+from django.contrib.sites.models import Site
+from django.test import RequestFactory
+from django.test import TestCase, Client
 from django.urls import reverse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
 from .models import Profile
-from allauth.socialaccount.models import SocialApp
-from django.contrib.sites.models import Site
-from django.test import TestCase, Client
-import timeit
 
 
 class ProfileCustomizationTests(TestCase):
@@ -44,11 +46,11 @@ class ChromeCompatibilityTest(unittest.TestCase):
     def test_page_loads(self):
         self.driver.get("https://calm-connections.azurewebsites.net/")
 
-        expected_title = "Calm-Connection"
+        expected_title = "Calm-Connections"
         self.assertEqual(expected_title, self.driver.title)
 
-        translucent_block = self.driver.find_element(By.CLASS_NAME, "translucent-block")
-        main_text = self.driver.find_element(By.CLASS_NAME, "main-text")
+        translucent_block = self.driver.find_element(By.CLASS_NAME, "hero")
+        main_text = self.driver.find_element(By.CLASS_NAME, "hero-text")
 
         self.assertTrue(translucent_block.is_displayed())
         self.assertTrue(main_text.is_displayed())
