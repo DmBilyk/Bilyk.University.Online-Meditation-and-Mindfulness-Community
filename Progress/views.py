@@ -1,24 +1,36 @@
+import logging
+from datetime import datetime
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import HttpResponseServerError
-from .models import Task
-from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
-from WEB.decorators import custom_login_required
-import logging
-from .forms import EventForm, TaskForm
 from django.utils import timezone
-from .models import Event
-from django.core.mail import send_mail
-from django.conf import settings
-from WEB.models import User
 
+from WEB.decorators import custom_login_required
+from WEB.models import User
+from .forms import EventForm, TaskForm
+from .models import Event
+from .models import Task
+
+# Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def send_event_notification(user_id, event, notification_time):
+    """
+    Sends an event notification email to the user.
+
+    Args:
+        user_id (int): The ID of the user to send the notification to.
+        event (Event): The event to notify the user about.
+        notification_time (datetime): The time to send the notification.
+    """
+
     user = User.objects.get(id=user_id)
 
     recipient_email = user.email
@@ -41,6 +53,16 @@ def send_event_notification(user_id, event, notification_time):
 
 @custom_login_required
 def add_event(request):
+    """
+    Handles the request to add a new event.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The response object.
+    """
+
     try:
         if request.method == 'POST':
             form = EventForm(request.POST)
@@ -59,6 +81,17 @@ def add_event(request):
 
 @custom_login_required
 def edit_event(request, event_id):
+    """
+    Handles the request to edit an existing event.
+
+    Args:
+        request (HttpRequest): The request object.
+        event_id (int): The ID of the event to edit.
+
+    Returns:
+        HttpResponse: The response object.
+    """
+
     try:
         event = get_object_or_404(Event, pk=event_id, user=request.user)
 
@@ -78,6 +111,15 @@ def edit_event(request, event_id):
 
 @custom_login_required
 def manage_events(request):
+    """
+    Handles the request to manage events.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The response object.
+    """
     if request.method == 'POST':
         if 'delete' in request.POST:
             event_id = request.POST.get('delete')
@@ -103,6 +145,15 @@ def manage_events(request):
 
 @custom_login_required
 def calendar_view(request):
+    """
+    Handles the request to view the calendar.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The response object.
+    """
     try:
         today = timezone.now().date()
         tasks = Task.objects.filter(user=request.user).filter(
@@ -134,6 +185,16 @@ def calendar_view(request):
 
 @custom_login_required
 def add_task(request):
+    """
+    Handles the request to add a new task.
+
+    Args:
+        request (HttpRequest): The request object.
+
+    Returns:
+        HttpResponse: The response object.
+    """
+
     try:
         if request.method == 'POST':
             form = TaskForm(request.POST)
@@ -152,6 +213,16 @@ def add_task(request):
 
 @login_required
 def complete_task(request, task_id):
+    """
+    Handles the request to mark a task as complete.
+
+    Args:
+        request (HttpRequest): The request object.
+        task_id (int): The ID of the task to mark as complete.
+
+    Returns:
+        HttpResponse: The response object.
+    """
     try:
         task = Task.objects.get(pk=task_id)
         if task.completed:
@@ -168,6 +239,17 @@ def complete_task(request, task_id):
 
 @custom_login_required
 def delete_task(request, task_id):
+    """
+    Handles the request to delete a task.
+
+    Args:
+        request (HttpRequest): The request object.
+        task_id (int): The ID of the task to delete.
+
+    Returns:
+        HttpResponse: The response object.
+    """
+
     try:
         task = Task.objects.get(pk=task_id)
         task.delete()
@@ -180,6 +262,17 @@ def delete_task(request, task_id):
 
 @custom_login_required
 def delete_event(request, event_id):
+    """
+    Handles the request to delete an event.
+
+    Args:
+        request (HttpRequest): The request object.
+        event_id (int): The ID of the event to delete.
+
+    Returns:
+        HttpResponse: The response object.
+    """
+
     try:
         event = get_object_or_404(Event, id=event_id, user=request.user)
 

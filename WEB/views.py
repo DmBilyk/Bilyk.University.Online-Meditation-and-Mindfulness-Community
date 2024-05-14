@@ -1,28 +1,40 @@
 import logging
-from django.shortcuts import redirect
-from .decorators import custom_login_required
-from WEB.models import UserProfile
-from .forms import ProfileForm
-from .models import Profile
-from django.shortcuts import get_object_or_404
 import re
-from .models import Video_Youtube
+
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.shortcuts import render
 
+from WEB.models import UserProfile
+from .decorators import custom_login_required
+from .forms import ProfileForm
+from .models import Profile
+from .models import Video_Youtube
+
+# Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def faq(request):
+    """
+    Handles the FAQ page request.
+    """
     return render(request, 'faq.html')
 
 
 def home(request):
+    """
+    Handles the home page request.
+    """
     return render(request, 'home.html', {'user': request.user})
 
 
 @custom_login_required
 def profile_view(request):
+    """
+    Handles the profile view request.
+    """
     try:
         user_profile, created = UserProfile.objects.get_or_create(user=request.user)
         logger.info("User profile: %s", user_profile)
@@ -34,6 +46,9 @@ def profile_view(request):
 
 @custom_login_required
 def edit_profile(request):
+    """
+    Handles the edit profile request.
+    """
     user = request.user
     try:
         profile = user.profile
@@ -51,11 +66,17 @@ def edit_profile(request):
 
 
 def get_list_video(request):
+    """
+    Handles the video list request.
+    """
     videos = Video_Youtube.objects.all()
     return render(request, 'video/video_list.html', {'video_list': videos})
 
 
 def extract_video_id(url):
+    """
+    Extracts the video ID from a YouTube URL.
+    """
     video_id = None
     match = re.search(r"(?<=v=)[a-zA-Z0-9_-]+", url)
     if match:
@@ -64,10 +85,16 @@ def extract_video_id(url):
 
 
 def get_video_id(youtube_link):
+    """
+    Returns the video ID from a YouTube link.
+    """
     return extract_video_id(youtube_link)
 
 
 def get_video(request, pk: int):
+    """
+    Handles the video request.
+    """
     video = get_object_or_404(Video_Youtube, id=pk)
     video_id = get_video_id(video.youtube_link)
     return render(request, "video/video.html", {"video": video, "video_id": video_id})

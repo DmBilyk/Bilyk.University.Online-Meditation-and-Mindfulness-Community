@@ -26,6 +26,7 @@ The website is developed using Python version 3.11 and is built upon the Django 
 - Progress
 - WEB
 
+
 ### The main program files are located in the WEB directory
 
 ### Static files such as photos, javascript scripts, and css styles are located in the static directory
@@ -193,6 +194,29 @@ the community.
 - Prepare for public release and marketing efforts ✔️
 - Update README.md with final project documentation and release notes ✔️
 
+### Week 11:
+
+- Conduct final QA testing and bug fixes ✔️
+- Prepare for platform launch and deployment to production environment ✔️
+- Finalize marketing materials and promotional campaigns ✔️
+- Conduct training sessions for support team and community moderators ✔️
+- Update README.md with launch preparations and final updates ✔️
+
+#### Launch preparations and final updates
+
+- The website is now live and accessible to the public at https://calm-connections.azurewebsites.net
+- Users can register for an account using their Google credentials and access a range of features to support their
+  mindfulness journey.
+- The platform offers guided meditation sessions, a community forum, progress tracking, weekly challenges, and more to
+  help users cultivate mindfulness and holistic wellness.
+- Users can customize their profiles, participate in community discussions, and engage with like-minded individuals to
+  share experiences and support one another.
+- The website is optimized for performance and scalability, ensuring a seamless user experience for all users.
+- The platform is secure and protected against common vulnerabilities, ensuring user data is safe and protected.
+- The website is accessible to all users, including those with disabilities, and features inclusive design elements to
+  ensure a seamless user experience for all users.
+- Fix Bug in Challenge app, now user can join the challenge only once.
+
 # Release Notes:
 
 - The website is now live and accessible to the public at https://calm-connections.azurewebsites.net
@@ -304,4 +328,8 @@ the community.
 - The Feedback application is responsible for user feedback.
 - The Forum application is responsible for the forum where users can communicate with each other.
 - The Progress application is responsible for the user's progress in meditation.
-  ![img.png](img.png)
+
+
+
+
+
