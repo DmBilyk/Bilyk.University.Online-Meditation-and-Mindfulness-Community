@@ -13,11 +13,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import sys
 from pathlib import Path
-import google.auth
-from google.auth.transport.requests import Request
-import environ
-from dotenv import load_dotenv
+
 import certifi
+import environ
+import google.auth
+from dotenv import load_dotenv
+from google.auth.transport.requests import Request
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_cron',
+    'drf_yasg',
     'allauth',
     'allauth.account',
     'storages',
@@ -193,11 +195,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Define the directory where your static files are located
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR]
-
-from django.conf import settings
-from storages.backends.gcloud import GoogleCloudStorage
-from storages.utils import setting
-from urllib.parse import urljoin
 
 ###configuration for media file storing and reriving media file from gcloud
 

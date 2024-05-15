@@ -4,6 +4,7 @@ import re
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from rest_framework.decorators import api_view
 
 from WEB.models import UserProfile
 from .decorators import custom_login_required
@@ -23,6 +24,7 @@ def faq(request):
     return render(request, 'faq.html')
 
 
+@api_view(['GET'])
 def home(request):
     """
     Handles the home page request.
@@ -30,6 +32,7 @@ def home(request):
     return render(request, 'home.html', {'user': request.user})
 
 
+@api_view(['GET'])
 @custom_login_required
 def profile_view(request):
     """
@@ -44,6 +47,7 @@ def profile_view(request):
         raise
 
 
+@api_view(['GET'])
 @custom_login_required
 def edit_profile(request):
     """
@@ -65,6 +69,7 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', {'form': form})
 
 
+@api_view(['GET'])
 def get_list_video(request):
     """
     Handles the video list request.
@@ -91,6 +96,7 @@ def get_video_id(youtube_link):
     return extract_video_id(youtube_link)
 
 
+@api_view(['GET'])
 def get_video(request, pk: int):
     """
     Handles the video request.
