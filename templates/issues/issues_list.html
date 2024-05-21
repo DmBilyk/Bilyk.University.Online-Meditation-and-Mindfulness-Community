@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Issues</title>
+</head>
+<body>
+    <h1>GitHub Issues</h1>
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% else %}
+        <ul>
+            {% for issue in issues %}
+                <li>
+                    <a href="{{ issue.html_url }}">{{ issue.title }}</a> - {{ issue.state }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

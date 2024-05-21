@@ -54,6 +54,7 @@ urlpatterns = [
     path('forum/', include('Forum.urls')),
     path('', include('Progress.urls')),
     path('', include('Challenge.urls')),
+    path('', include('issues.urls')),
 ]
 
 if settings.DEBUG:
