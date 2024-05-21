@@ -47,7 +47,7 @@ def profile_view(request):
         raise
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @custom_login_required
 def edit_profile(request):
     """
