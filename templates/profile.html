@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+
+{% load static %}
+{% load socialaccount %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Raleway';
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Raleway', sans-serif; /* Added font-family */
+        }
+
+
+        #main-profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+
+        .translucent-block {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            min-height: 100vh; /* Changed height to min-height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+.main-text {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+}
+
+header h1 {
+    color: #AAA;
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+header span {
+    color: #222;
+}
+
+footer span {
+    color: #AAA;
+}
+
+.copyright-area {
+    background: #202020;
+    padding: 25px 0;
+    text-align: center;
+}
+
+    .copyright-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #878787;
+    }
+
+    .copyright-text p a {
+        color: #009688;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa; /* Adjust as needed */
+        padding: 20px 0; /* Adjust padding as needed */
+        text-align: center;
+    }
+
+    .teal {
+        background: #009688;
+        height: 75px;
+    }
+
+    .gray {
+        background: #9e9e9e;
+    }
+
+/* Top and Bottom borders go out */
+.teal .borderYtoX a:before,
+.teal .borderYtoX a:after {
+    opacity: 0.5;
+    height: 100%;
+    width: 2px;
+    content: '';
+    background: #FFF;
+    transition: all 0.3s;
+    position: absolute;
+}
+
+.teal .borderYtoX a:before {
+    left: 0px;
+    top: 100px;
+}
+
+.teal .borderYtoX a:after {
+    right: 0px;
+    bottom: 100px;
+}
+
+    .teal .borderYtoX a:hover:before,
+    .teal .borderYtoX a:hover:after {
+        opacity: 1;
+        height: 2px;
+        width: 100%;
+    }
+
+    .my-button {
+        padding: 10px 20px;
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Hover effect */
+    .my-button:hover {
+        background-color: #0056b3; /* Button background color on hover */
+    }
+
+    #navbar {
+        text-align: center;
+        padding: 20px 40px;
+        margin: 0 auto;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 10px;
+    background-image: url('/static/assets/images/user.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.account-name {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 20px; /* Changed font-size */
+}
+
+
+    /* Adaptation for smaller screens */
+    @media only screen and (max-width: 768px) {
+        .profile-card {
+            max-width: 90%;
+        }
+    }
+
+    #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    #loader {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #25b09b;
+        animation: spin 2s linear infinite;
+    }
+
+    #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #25b09b;
+        animation: spin 3s linear infinite;
+    }
+
+    #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #25b09b;
+        animation: spin 1.5s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+
+        @media (min-width: 992px) {
+            .navbar {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                padding: 20px 60px;
+                background: #343148 !important;
+                z-index: 9;
+            }
+
+            .navbar.nav-sticky {
+                padding: 10px 60px;
+                background: #343148 !important;
+            }
+
+            .navbar a.nav-link {
+                padding: 8px 15px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
+
+
+{% csrf_token %}
+
+
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm<span> - </span>Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link active" href="/forum/">Forum</a>
+                <a class="nav-item nav-link" href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-profile-info">
+    <div class="profile-card">
+        <h1>User Profile</h1>
+        <p>Name: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        {% if user.profile %}
+        {% if user.profile.age %}
+        <p>Age: {{ user.profile.age }}</p>
+        {% endif %}
+        {% if user.profile.bio %}
+        <p>BIO: {{ user.profile.bio }}</p>
+        {% endif %}
+        {% if user.profile.country %}
+        <p>Country: {{ user.profile.get_country_display }}</p>
+        {% endif %}
+        {% if user.profile.level %}
+        <p>Level: {{ user.profile.get_level_display }}</p>
+        {% endif %}
+        {% endif %}
+        <a class="my-button" href="/edit-profile/">Edit profile</a>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="footer-info">
+                <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
+                <div class="footer-menu">
+                    <p>+380 68 278 9501</p>
+                    <p>dmbilyk3861@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; <a href="https://calm-connections.azurewebsites.net/">Calm-Connections</a>, All Right
+                        Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(window).on("load", function () {
+        $("#loader-wrapper").fadeOut();
+        $("#loader").delay(400).fadeOut("slow");
+    });
+
+
+</script>
+
+
+<script src='https://fullcalendar.io/releases/main/base.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
+
+</html>

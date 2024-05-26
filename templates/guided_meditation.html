@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>Masonry Responsive Template</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- CSS Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/vendor/modernizr-2.6.2.min.js' %}"></script>
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet"/>
+    <style>
+
+        body {
+            background-color: #fed1d1;
+        }
+
+        .site-top {
+            background-color: #343148;
+            color: white;
+            padding: 10px 20px;
+
+        }
+
+        .animated-link {
+            display: inline-block;
+            color: #FFF;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.animated-link:before,
+.animated-link:after {
+    opacity: 0.5;
+    height: 100%;
+    width: 2px;
+    content: '';
+    background: #FFF;
+    transition: all 0.3s;
+    position: absolute;
+}
+
+.animated-link:before {
+    left: 0px;
+    top: 0px;
+}
+
+.animated-link:after {
+    right: 0px;
+    bottom: 0px;
+}
+
+        .animated-link:hover:before,
+        .animated-link:hover:after {
+            opacity: 1;
+            height: 2px;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .navbar {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                padding: 20px 60px;
+                background: #343148 !important;
+                z-index: 9;
+            }
+
+            .navbar.nav-sticky {
+                padding: 10px 60px;
+                background: #343148 !important;
+            }
+
+            .navbar a.nav-link {
+                padding: 8px 15px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
+
+
+</style>
+</head>
+<body>
+
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
+
+<div class="content-bg"></div>
+<div class="bg-overlay"></div>
+
+
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm - Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link " href="/forum/">Forum</a>
+                <a class="nav-item nav-link active" href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block content %}
+{% endblock content %}
+
+
+<!-- FOOTER -->
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="footer-info">
+                <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
+                <div class="footer-menu">
+                    <p>+380 68 278 9501</p>
+                    <p>dmbilyk3861@gmail.com</p>
+                </div>
+                <div class="footer-social">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; <a href="https://calm-connections.azurewebsites.net/">Calm-Connections</a>, All Right
+                        Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
+
+<script src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
+<script src="{% static 'js/min/plugins.min.js' %}"></script>
+<script src="{% static 'js/min/main.min.js' %}"></script>
+
+<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+
+<script type="text/javascript">
+
+    $(window).load(function () {
+        $('#loader').fadeOut();
+        $('#loader-wrapper').delay(350).fadeOut('slow');
+        $('body').delay(350).css({'overflow-y': 'visible'});
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+<head>
+    <title>FAQ - Calm-Connection</title>
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+
+    <meta content="Explore our range of meditation and mindfulness services, including guided meditation sessions, mindfulness courses, and community events. Join us on the path to inner peace and well-being."
+          name="description">
+    <meta content="meditation services, mindfulness courses, guided meditation, community events, inner peace"
+          name="keywords">
+
+</head>
+<body>
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="/" id="home">HOME</a>
+</div>
+
+
+<div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="accordion">
+        <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">How do I create an account?</span><span
+                    class="icon" aria-hidden="true"></span></button>
+            <div class="accordion-content">
+                <p>There is no need for this, we only use Google authorization. It automatically checks your address and
+                    nickname for us and gives us your address and nickname.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title">How can I change my profile information?</span><span
+                    class="icon" aria-hidden="true"></span></button>
+            <div class="accordion-content">
+                <p>After logging in, click on your username at the top right corner of the page. From the dropdown menu,
+                    select "Profile". On your profile page, click on the "Edit Profile" button. Here, you can update
+                    your profile information and save the changes.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">How do I post on the forum?</span><span
+                    class="icon" aria-hidden="true"></span></button>
+            <div class="accordion-content">
+                <p>Navigate to the forum page and click on the "Create Post" button. You will be asked to enter a title
+                    and the content for your post. After filling out this information, click on the "Submit" button to
+                    post it on the forum.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title">How can I propose changes and suggestions for expanding the resource library?</span><span
+                    class="icon" aria-hidden="true"></span></button>
+            <div class="accordion-content">
+                <p>It's simple, on the main page of the site, in the bottom center there is a Feedback button, where you
+                    can write all the comments, questions, suggestions for expanding the site's capabilities and
+                    expanding the resource library.</p>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button id="accordion-button-5" aria-expanded="false"><span class="accordion-title">If you have any other questions.....</span><span
+                    class="icon" aria-hidden="true"></span></button>
+            <div class="accordion-content">
+                <p>Write to the developer in Telegram @lkjhg13 We will be happy to add the answer to your question with
+                    your permission for all users in the FAQ section</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const items = document.querySelectorAll(".accordion button");
+
+        function toggleAccordion() {
+            const itemToggle = this.getAttribute('aria-expanded');
+
+            for (let i = 0; i < items.length; i++) {
+                items[i].setAttribute('aria-expanded', 'false');
+            }
+
+            if (itemToggle === 'false') {
+                this.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+    });
+</script>
+
+</body>
+</html>

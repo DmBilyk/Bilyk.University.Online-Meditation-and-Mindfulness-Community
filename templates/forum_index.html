@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+
+{% load static %}
+{% load socialaccount %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - Calm-Connections</title>
+    <meta content="Join our forum to connect with like-minded individuals interested in meditation and mindfulness. Share experiences, ask questions, and participate in discussions to deepen your practice."
+          name="description">
+    <meta content="meditation forum, mindfulness discussion, community forum, meditation support, mindfulness community"
+          name="keywords">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+
+
+    <style>
+
+        .translucent-block {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-text {
+            color: #b07c7b;
+            text-align: center;
+            font-size: 24px;
+            padding: 20px;
+        }
+
+        header h1 {
+            color: #b07c7b;
+            font-size: 40px;
+            font-weight: lighter;
+            margin-bottom: 20px;
+        }
+
+        header span {
+            color: #222;
+        }
+
+
+        .copyright-area {
+            background: #c08e8e;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .copyright-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #c08e8e;
+        }
+
+        .copyright-text p a {
+            color: rgb(192, 142, 142);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F7CAC9;
+        }
+
+
+        .forum-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .post {
+            background-color: #333148;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #b07c7b;
+        }
+
+        .author {
+            font-weight: bold;
+            color: #b07c7b;
+        }
+
+        .date {
+            color: #b07c7b;
+        }
+
+        #post-text {
+            color: #b07c7b;
+        }
+
+        #response-text {
+            font-size: smaller;
+            color: #b07c7b;
+        }
+
+        .create-post-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #333148;
+            color: #ffffff;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .create-post-btn:hover {
+            background-color: #5d5783;
+        }
+
+        .forum-container {
+            margin-top: 100px;
+        }
+
+        #reply-form {
+            color: #89605f;
+        }
+
+        textarea {
+            background-color: #fed1d1;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Top Bar Start -->
+<div class="top-bar d-none d-md-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="top-bar-left">
+                    <div class="text">
+                        <h2>Forum</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="top-bar-right">
+                    <div class="social">
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Top Bar End -->
+
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm<span> - </span>Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link active" href="/forum/">Forum</a>
+                <a class="nav-item nav-link" href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% csrf_token %}
+<div class="forum-container">
+
+    <ul>
+        {% for item in posts_with_responses %}
+        <li class="post" id="post-{{ item.post.id }}">
+            <div class="post-header">
+                <span class="author">{{ item.post.user.username }}</span> - <span class="date">{{ item.post.created_at }}</span>
+            </div>
+            <p id="post-text">{{ item.post.message }}</p>
+            {% for response in item.responses %}
+            <div class="response">
+                <p id="response-text">{{ response.message }}</p>
+                <p>Response by {{ response.reply_to.username }} on {{ response.created_at }}</p>
+            </div>
+            {% endfor %}
+            <form action="{% url 'reply_post' item.post.id %}" id="Response_Form" method="post">
+                {% csrf_token %}
+                <textarea name="message" required></textarea>
+                <a href="#" id="submit_response">Replay</a>
+            </form>
+
+        </li>
+        {% endfor %}
+    </ul>
+
+
+    <!-- Create Post Section -->
+    <h2>Create a new post</h2>
+    <form action="{% url 'create_post' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="parent_post_id" value="{{ parent_post_id }}">
+        <button class="create-post-btn" type="submit">Post</button>
+    </form>
+
+
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info">
+                    <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
+                    <div class="footer-menu">
+                        <p>+380 68 278 9501</p>
+                        <p>dmbilyk3861@gmail.com</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <a href="https://calm-connections.azurewebsites.net/">Calm-Connections</a>, All Right
+                            Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <a class="back-to-top" href="#"><i class="fa fa-chevron-up"></i></a>
+</div>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+    $(window).on("load", function () {
+        $("#loader-wrapper").fadeOut();
+        $("#loader").delay(400).fadeOut("slow");
+    });
+
+
+</script>
+
+<script>
+
+    function scrollToPost(postId) {
+        const postElement = document.getElementById(`post-${postId}`);
+        if (postElement) {
+            postElement.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('post');
+        if (postId) {
+            scrollToPost(postId);
+        }
+    };
+
+
+</script>
+
+
+<script>
+    document.getElementById("submit_response").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("Response_Form").submit();
+    });
+</script>
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
+
+
+<script>
+    document.getElementById('logout-link').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '{% url "logout" %}';
+
+
+        var csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = '{{ csrf_token }}';
+
+
+        form.appendChild(csrfInput);
+
+
+        document.body.appendChild(form);
+        form.submit();
+    });
+</script>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge List - Calm-Connections</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #343148;
+        }
+
+        a {
+            color: #343148;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #343148;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #5d5783;
+            color: #fff;
+        }
+
+
+        #navbar {
+            background: #343148;
+            height: 90px;
+            text-align: center;
+            padding: 20px 40px;
+            margin: 0 auto;
+        }
+
+
+        #navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+        }
+
+
+        #navbar a:hover:before,
+        #navbar a:hover:after {
+            opacity: 1;
+            height: 2px;
+            width: 100%;
+        }
+
+
+        #navbar .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+            background-image: url('/static/assets/images/user.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        #navbar .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+
+        #navbar .account-name {
+            font-size: 20px;
+        }
+
+        .teal {
+            background: #343148;
+            height: 75px;
+        }
+
+        .gray {
+            background: #9e9e9e;
+        }
+
+        /* Top and Bottom borders go out */
+        .teal .borderYtoX a:before,
+        .teal .borderYtoX a:after {
+            opacity: 0.5;
+            height: 100%;
+            width: 2px;
+            content: '';
+            background: #FFF;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .teal .borderYtoX a:before {
+            left: 0px;
+            top: 100px;
+        }
+
+        .teal .borderYtoX a:after {
+            right: 0px;
+            bottom: 100px;
+        }
+
+        .teal .borderYtoX a:hover:before,
+        .teal .borderYtoX a:hover:after {
+            opacity: 1;
+            height: 2px;
+            width: 100%;
+        }
+
+        .animated-link {
+            display: inline-block;
+            color: #FFF;
+            text-decoration: none;
+            font-size: 20px; /* Changed font-size */
+            margin: 0px 10px;
+            padding: 10px 10px;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+        }
+
+        .animated-link:before,
+        .animated-link:after {
+            opacity: 0.5;
+            height: 100%;
+            width: 2px;
+            content: '';
+            background: #FFF;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .animated-link:before {
+            left: 0px;
+            top: 0px;
+        }
+
+        .animated-link:after {
+            right: 0px;
+            bottom: 0px;
+        }
+
+        .animated-link:hover:before,
+        .animated-link:hover:after {
+            opacity: 1;
+            height: 2px;
+            width: 100%;
+        }
+
+        #navbar {
+            text-align: center;
+            padding: 20px 40px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="navbar" class="container teal borderYtoX">
+    <a href="/calendar/" class="animated-link">BACK</a>
+    <a href="/" class="animated-link">HOME</a>
+
+</div>
+{% for challenge in challenges %}
+<div>
+    <h2>{{ challenge.title }}</h2>
+    <p>{{ challenge.start_date }} - {{ challenge.end_date }}</p>
+    <a href="{% url 'join_challenge' challenge.id %}">Join Challenge</a>
+    <div>
+        <!-- Facebook Share Button -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}join/{{ challenge.id }}/"
+           target="_blank">
+            <i class="fab fa-facebook-square"></i> Share on Facebook
+        </a>
+        <!-- Twitter Share Button -->
+        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}join/{{ challenge.id }}/ &text=Check out this challenge!"
+           target="_blank">
+            <i class="fab fa-twitter-square"></i> Share on Twitter
+        </a>
+    </div>
+</div>
+{% endfor %}
+</body>
+</html>

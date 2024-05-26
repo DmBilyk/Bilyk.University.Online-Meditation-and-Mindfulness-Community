@@ -1,0 +1,42 @@
+{% extends 'guided_meditation.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+
+    #main_video_list {
+        margin-top: 150px;
+        background-color: #fed1d1;
+    }
+
+
+</style>
+
+
+<div class="main-posts" id="main_video_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <img alt="" class="single-video" src="{{ video.image.url }}">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <span class="date">{{ video.create_at }}</span>
+                <h4><a href="{% url 'video' video.id %}">{{ video.title }}</a></h4>
+                <p>{{ video.description }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <iframe allowfullscreen frameborder="0" height="800" src="https://www.youtube.com/embed/{{ video_id }}"
+                        width="1000"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'js/meditation.js' %}"></script>

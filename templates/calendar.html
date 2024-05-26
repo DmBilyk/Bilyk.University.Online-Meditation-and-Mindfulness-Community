@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+
+
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Schedule - Calm-Connections</title>
+    <meta content="Check out our upcoming events schedule for meditation sessions, mindfulness workshops, and community gatherings. Join us for a journey of self-discovery and spiritual growth."
+          name="description">
+    <meta content="events schedule, meditation sessions, mindfulness workshops, community gatherings, self-discovery"
+          name="keywords">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+
+        }
+
+        h1 {
+            color: #333366;
+        }
+
+
+        p {
+            color: #666666;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            background-color: #f2f2f2;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        a {
+            color: #0074d9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .delete-btn {
+            color: #ff4136;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .messages li {
+            color: red;
+        }
+
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #loader {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #25b09b;
+            animation: spin 2s linear infinite;
+        }
+
+        #loader:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #25b09b;
+            animation: spin 3s linear infinite;
+        }
+
+        #loader:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #25b09b;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #myRightSidenav a {
+            position: absolute;
+            right: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #myRightSidenav a:hover {
+            right: 0;
+        }
+
+        #home {
+            top: 20px;
+
+        }
+
+
+        @media (min-width: 992px) {
+            .navbar {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                padding: 20px 60px;
+                background: #343148 !important;
+                z-index: 9;
+            }
+
+            .navbar.nav-sticky {
+                padding: 10px 60px;
+                background: #343148 !important;
+            }
+
+            .navbar a.nav-link {
+                padding: 8px 15px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
+
+        .main-calendar-content {
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            margin-top: 120px;
+
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
+
+
+{% csrf_token %}
+{% if user.is_authenticated %}
+
+
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm - Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link " href="/forum/">Forum</a>
+                <a class="nav-item nav-link " href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link active" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class='main-calendar-content'>
+    <h1>Today's Tasks</h1>
+
+    <p>Completed tasks: {{ completed_tasks_count }} / {{ tasks.count }}</p>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.description }}
+            <input %} %}checked{% endif if
+                   onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox" {%>
+            <span class="delete-btn" onclick="window.location.href='{% url 'delete_task' task.id %}'">Delete</span>
+        </li>
+        {% endfor %}
+
+        <!-- Display tasks for the weekly challenge -->
+        {% if weekly_challenge %}
+        <h2>Weekly Challenge</h2>
+        <p>Progress: {{ progress_percentage }}%</p>
+        <ul>
+            {% for task in weekly_challenge.tasks.all %}
+            <li>
+                Day {{ task.day_number }}: {{ task.description }}
+                <input %} %}checked{% endif if
+                       onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox"
+                       {%>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+</ul>
+<a href="{% url 'add_task' %}">Add Task</a>
+
+    <a href="/challenges/">WEEK CHALLENGES</a>
+
+    <h1>Today's Events</h1>
+<ul>
+    {% for event in events %}
+    <li>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>Time: {{ event.time }}</p>
+        <p>Date: {{ event.date }}</p>
+        <a href="{{ event.link }}">Join Meditation Session</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_event' %}">Create Event</a>
+    <a href="{% url 'manage_events' %}">Manage Events</a>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li %} %} class="{{ message.tags }}" endif if message.tags {% {%>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <!-- FOOTER -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="footer-info">
+                    <a class="footer-logo" href="/">Calm<span> - </span>Connections</a>
+                    <div class="footer-menu">
+                        <p>+380 68 278 9501</p>
+                        <p>dmbilyk3861@gmail.com</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/lkjhg13"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <a href="https://calm-connections.azurewebsites.net/">Calm-Connections</a>, All Right
+                            Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+    {% else %}
+    <p>You must be logged in to view this page.</p>
+    {% endif %}
+
+
+</div>
+
+
+</body>
+
+
+<div id='calendar'></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: function (fetchInfo, successCallback, failureCallback) {
+                fetch('/get_events/')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(events => successCallback(events))
+                    .catch(error => {
+                        console.error('Error:', error);
+                        failureCallback(error);
+                    });
+            },
+            dateClick: function (info) {
+                fetch('/get_events/?date=' + info.dateStr)
+                    .then(response => response.json())
+                    .then(events => {
+
+                    });
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+
+<script src='https://fullcalendar.io/releases/main/base.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
+
+<script>
+    $(window).on("load", function () {
+        $("#loader-wrapper").fadeOut();
+        $("#loader").delay(400).fadeOut("slow");
+    });
+
+
+</script>
+
+
+</html>
