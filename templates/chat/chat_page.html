@@ -7,46 +7,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with OpenAI</title>
 
-        <meta content="Welcome to our online meditation and mindfulness community! Join us to find inner peace and tranquility through guided meditation sessions and mindfulness practices."
-          name="description">
-    <meta content="online meditation, mindfulness community, guided meditation, inner peace, tranquility"
-          name="keywords">
+
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    <!-- Google Font -->
+
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
           rel="stylesheet">
 
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
 
 
-    <!-- Template Stylesheet -->
     <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
-        body { font-family: Arial, sans-serif; }
-        .chat-box { width: 300px; margin: 50px auto; border: 1px solid #ccc; padding: 10px; }
-        .messages { height: 200px; overflow-y: scroll; border-bottom: 1px solid #ccc; margin-bottom: 10px; }
-        .message { padding: 5px; }
-        .user { text-align: right; }
-        .bot { text-align: left; }
+                @media (min-width: 992px) {
+            .navbar {
+                position: absolute;
+                width: 100%;
+                top: 0px;
+                padding: 20px 60px;
+                background: #343148 !important;
+                z-index: 9;
+            }
+
+            .navbar.nav-sticky {
+                padding: 10px 60px;
+                background: #343148 !important;
+            }
+
+            .navbar a.nav-link {
+                padding: 8px 15px;
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+        }
+
+
+
+
     </style>
+
 </head>
 <body>
-    <div class="chat-box">
-        <div class="messages"></div>
-        <textarea id="message-input" rows="3" style="width: 100%;"></textarea>
-        <button id="send-button">Send</button>
+
+
+    {% csrf_token %}
+
+
+
+<div class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Calm<span> - </span>Connections</a>
+        <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link" href="/forum/">Forum</a>
+                <a class="nav-item nav-link" href="/guided-meditation/">Meditation</a>
+                <a class="nav-item nav-link active" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
+                <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
+            </div>
+        </div>
     </div>
+</div>
+
+    <div class="chat">
+        <div class="chat-title">
+            <h1>Open AI</h1>
+            <h2>Meditation</h2>
+            <figure class="avatar">
+                <img src="https://seeklogo.com/images/C/chatgpt-logo-02AFA704B5-seeklogo.com.png" />
+            </figure>
+        </div>
+        <div class="messages">
+            <div class="messages-content"></div>
+        </div>
+        <div class="message-box">
+            <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
+            <button type="submit" class="message-submit">Send</button>
+        </div>
+    </div>
+    <div class="bg"></div>
+
+
 
     <script>
         $(document).ready(function() {
-            $('#send-button').click(function() {
-                const message = $('#message-input').val();
-                if (message.trim() === '') return;
+            $('.message-submit').click(function() {
+                const message = $('.message-input').val();
+                if ($.trim(message) === '') return;
 
-                $('.messages').append('<div class="message user">' + message + '</div>');
-                $('#message-input').val('');
+                $('.messages-content').append('<div class="message message-personal new">' + message + '</div>');
+                $('.message-input').val('');
 
                 $.ajax({
                     type: 'POST',
@@ -56,11 +121,25 @@
                         'csrfmiddlewaretoken': '{{ csrf_token }}'
                     },
                     success: function(response) {
-                        $('.messages').append('<div class="message bot">' + response.response + '</div>');
+                        $('.messages-content').append('<div class="message new"><figure class="avatar"><img src="https://seeklogo.com/images/C/chatgpt-logo-02AFA704B5-seeklogo.com.png" /></figure>' + response.response + '</div>');
                     }
                 });
             });
         });
     </script>
+
+
+
+
 </body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="{% static 'js/meditation.js' %}"></script>
 </html>

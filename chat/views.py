@@ -9,7 +9,7 @@ from datetime import timedelta
 
 openai.api_key = settings.LEPTON_API_TOKEN
 
-VALID_KEYWORDS = ['meditation', 'mindfulness', 'zen', 'relaxation', 'breathing', 'yoga']
+VALID_KEYWORDS = ['meditation', 'mindfulness', 'zen', 'relaxation', 'breathing', 'yoga','contemplation', 'reflection', 'introspection', 'tranquility', 'calmness', 'focus', 'awareness', 'peace', 'serenity', 'stress', 'anxiety', 'depression', 'mental health', 'well-being','inhalation', 'exhalation', 'respiration', 'pranayama', 'breathe', 'lungs', 'oxygenation','harmony', 'simplicity', 'peace', 'stillness', 'balance', 'enlightenment', 'clarity']
 
 def chat_page(request):
     return render(request, 'chat/chat_page.html')

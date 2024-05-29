@@ -94,121 +94,6 @@ the community.
 
 • Social Sharing:Share your meditation journey, achievements, and insights with friends and followers on social media.
 
-## Project Task Decomposition
-
-### Week 1:
-
-- Implement feature: User Registration with Google OAuth 2.0 ✔️
-- Set up Azure environment for project deployment ✔️
-- Initialize GitHub repository for version control ✔️
-- Create README.md file with Getting Started documentation ✔️
-- Set up Continuous Integration/Continuous Delivery pipeline ✔️
-
-### Week 2:
-- Implement feature: Profile Customization ✔️
-- Design architecture diagram for the project ✔️
-- Configure CI/CD pipeline for automated deployment on Azure ✔️
-- Begin writing unit tests for user registration functionality ✔️
-- Document project architecture in README.md ✔️
-
-### Week 3:
-
-- Develop infrastructure diagram outlining Azure components ✔️
-- Enhance unit test coverage for user registration ✔️
-- Create Postman collection for testing user registration endpoints ✔️
-- Implement feature: Guided Meditation Sessions ✔️
-- Update README.md with project tasks decomposition ✔️
-
-
-
-### Week 4:
-
-- Expand unit tests to cover profile customization functionality ✔️
-
-- Implement feature: Community ✔️
-
-- Integrate feedback system for user interaction ✔️
-
-- Conduct testing on Google Chrome PC browsers for compatibility ✔️
-
-- Review and update documentation in README.md ✔️
-
-### Week 5:
-
-- Optimize Azure deployment for performance and scalability ✔️
-
-
-- Conduct user acceptance testing to ensure seamless functionality ✔️
-
-- Refactor code for improved readability and maintainability ✔️
-
-- Update README.md with testing procedures and results ✔️
-
-- Implement feature: Progress Tracking ✔️
-
-### Week 6:
-
-- Conduct load testing to assess platform performance under stress ✔️
-- Implement feature: Weekly Challenges ✔️
-- Review and update unit tests for new features and functionality ✔️
-- Enhance user interface for intuitive navigation and engagement ✔️
-- Document load testing results and optimizations in README.md ✔️
-
-### Week 7:
-
-- Implement feature: Resource Library
-
-- Conduct security audit and implement necessary measures ✔️
-
-- Enhance error handling and logging for improved troubleshooting ✔️
-
-- Integrate event calendar functionality with live session scheduling ✔️
-
-- Update README.md with security measures and best practices ✔️
-
-### Week 8:
-
-- Implement feature: Event Calendar ✔️
-
-- Conduct code review and address any identified issues or vulnerabilities ✔️
-
-- Perform accessibility testing to ensure inclusivity ✔️
-
-- Implement social sharing functionality for user engagement ✔️
-
-- Document accessibility features and testing results in README.md ✔️
-
-### Week 9:
-
-- Implement feature: Feedback System ✔️
-- Implement notification center for user communication ✔️
-- Enhance documentation with comprehensive user guides and FAQs ✔️
-- Conduct performance testing to optimize platform responsiveness ✔️
-- Update README.md with performance testing results and optimizations ✔️
-
-### Week 10:
-
-- Implement feature: User Support ✔️
-- Fine-tune platform based on user feedback and testing results ✔️
-- Conduct regression testing to ensure new features do not impact existing functionality ✔️
-- Prepare for public release and marketing efforts ✔️
-- Update README.md with final project documentation and release notes ✔️
-
-### Week 11:
-
-- Conduct final QA testing and bug fixes ✔️
-- Prepare for platform launch and deployment to production environment ✔️
-- Finalize marketing materials and promotional campaigns ✔️
-- Conduct training sessions for support team and community moderators ✔️
-- Update README.md with launch preparations and final updates ✔️
-
-### Week 12:
-- Update README.md with post-launch updates and ongoing maintenance plans ✔️
-- Address any post-launch issues or concerns ✔️
-- Continue community engagement and support efforts ✔️
-- Official platform launch and deployment ✔️
-- Monitor platform performance and user feedback ✔️
-
 
 ### Post-launch Updates
 - Monitor platform performance and user feedback for continuous improvement 
@@ -352,5 +237,122 @@ the community.
 
 
 
+
+
+
+## Project Task Decomposition
+
+### Week 1:
+
+- Implement feature: User Registration with Google OAuth 2.0 ✔️
+- Set up Azure environment for project deployment ✔️
+- Initialize GitHub repository for version control ✔️
+- Create README.md file with Getting Started documentation ✔️
+- Set up Continuous Integration/Continuous Delivery pipeline ✔️
+
+### Week 2:
+- Implement feature: Profile Customization ✔️
+- Design architecture diagram for the project ✔️
+- Configure CI/CD pipeline for automated deployment on Azure ✔️
+- Begin writing unit tests for user registration functionality ✔️
+- Document project architecture in README.md ✔️
+
+### Week 3:
+
+- Develop infrastructure diagram outlining Azure components ✔️
+- Enhance unit test coverage for user registration ✔️
+- Create Postman collection for testing user registration endpoints ✔️
+- Implement feature: Guided Meditation Sessions ✔️
+- Update README.md with project tasks decomposition ✔️
+
+
+
+### Week 4:
+
+- Expand unit tests to cover profile customization functionality ✔️
+
+- Implement feature: Community ✔️
+
+- Integrate feedback system for user interaction ✔️
+
+- Conduct testing on Google Chrome PC browsers for compatibility ✔️
+
+- Review and update documentation in README.md ✔️
+
+### Week 5:
+
+- Optimize Azure deployment for performance and scalability ✔️
+
+
+- Conduct user acceptance testing to ensure seamless functionality ✔️
+
+- Refactor code for improved readability and maintainability ✔️
+
+- Update README.md with testing procedures and results ✔️
+
+- Implement feature: Progress Tracking ✔️
+
+### Week 6:
+
+- Conduct load testing to assess platform performance under stress ✔️
+- Implement feature: Weekly Challenges ✔️
+- Review and update unit tests for new features and functionality ✔️
+- Enhance user interface for intuitive navigation and engagement ✔️
+- Document load testing results and optimizations in README.md ✔️
+
+### Week 7:
+
+- Implement feature: Resource Library
+
+- Conduct security audit and implement necessary measures ✔️
+
+- Enhance error handling and logging for improved troubleshooting ✔️
+
+- Integrate event calendar functionality with live session scheduling ✔️
+
+- Update README.md with security measures and best practices ✔️
+
+### Week 8:
+
+- Implement feature: Event Calendar ✔️
+
+- Conduct code review and address any identified issues or vulnerabilities ✔️
+
+- Perform accessibility testing to ensure inclusivity ✔️
+
+- Implement social sharing functionality for user engagement ✔️
+
+- Document accessibility features and testing results in README.md ✔️
+
+### Week 9:
+
+- Implement feature: Feedback System ✔️
+- Implement notification center for user communication ✔️
+- Enhance documentation with comprehensive user guides and FAQs ✔️
+- Conduct performance testing to optimize platform responsiveness ✔️
+- Update README.md with performance testing results and optimizations ✔️
+
+### Week 10:
+
+- Implement feature: User Support ✔️
+- Fine-tune platform based on user feedback and testing results ✔️
+- Conduct regression testing to ensure new features do not impact existing functionality ✔️
+- Prepare for public release and marketing efforts ✔️
+- Update README.md with final project documentation and release notes ✔️
+
+### Week 11:
+
+- Conduct final QA testing and bug fixes ✔️
+- Prepare for platform launch and deployment to production environment ✔️
+- Finalize marketing materials and promotional campaigns ✔️
+- Conduct training sessions for support team and community moderators ✔️
+- Update README.md with launch preparations and final updates ✔️
+
+### Week 12:
+- Update README.md with post-launch updates and ongoing maintenance plans ✔️
+- Address any post-launch issues or concerns ✔️
+- Continue community engagement and support efforts ✔️
+- Official platform launch and deployment ✔️
+- Monitor platform performance and user feedback ✔️
 
 
