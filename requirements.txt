@@ -5,6 +5,9 @@ django_allauth==0.61.1
 django_cron==0.6.0
 django_environ==0.11.2
 django_storages==1.14.2
+pyodbc==5.1.0
+pymssql==2.3.0
+mssql-django==1.4.2
 djangorestframework==3.15.1
 drf_yasg==1.21.7
 locust== 2.24.1
@@ -15,14 +18,12 @@ python-decouple==3.8
 python-dotenv==1.0.1
 Requests==2.32.2
 selenium==4.21.0
+google-api-core==2.18.0
 google-auth==2.29.0
 google-cloud-core==2.4.1
 google-cloud-storage==2.16.0
 whitenoise==6.6.0
-pyodbc==5.1.0
-pyobjc==9.0
-pymssql==2.3.0
-PyMySQL==1.1.0
+
 
 
 
