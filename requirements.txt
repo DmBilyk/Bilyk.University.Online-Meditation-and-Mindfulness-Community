@@ -12,7 +12,6 @@ djangorestframework==3.15.1
 drf_yasg==1.21.7
 locust== 2.24.1
 openai==1.30.4
-protobuf==5.27.0
 pytest==8.1.1
 python-decouple==3.8
 python-dotenv==1.0.1
