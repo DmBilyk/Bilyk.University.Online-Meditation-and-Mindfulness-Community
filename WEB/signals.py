@@ -5,6 +5,12 @@ from django.dispatch import receiver
 from .models import UserProfile
 
 
+from django.dispatch import receiver
+from allauth.account.signals import user_signed_up
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+
 @receiver(user_signed_up)
 def save_profile_data(request, user, **kwargs):
     if user and kwargs.get('sociallogin'):
@@ -13,6 +19,16 @@ def save_profile_data(request, user, **kwargs):
             google_name = kwargs['sociallogin'].account.extra_data.get('name')
             UserProfile.objects.create(user=user, google_email=google_email, google_name=google_name)
 
+            # Prepare email content
+            subject = 'Welcome to our community!'
+            message = render_to_string('email/welcome_email.html', {'name': google_name})
+            from_email = settings.EMAIL_HOST_USER
+            to_email = [google_email]
+            print(to_email)
+
+            # Send email
+            send_mail(subject, '', from_email, to_email, html_message=message)
+
 
 @receiver(post_save, sender=UserProfile)
 def update_user_profile(sender, instance, created, **kwargs):
@@ -20,3 +36,6 @@ def update_user_profile(sender, instance, created, **kwargs):
         instance.user.google_email = instance.google_email
         instance.user.google_name = instance.google_name
         instance.user.save()
+
+
+

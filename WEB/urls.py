@@ -39,6 +39,8 @@ schema_view = get_schema_view(
     public=True,
 )
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -48,13 +50,17 @@ urlpatterns = [
     path('guided-meditation/', views.get_list_video, name='guided-meditation'),
     path('faq/', views.faq, name='faq'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('about/', views.about, name='about'),
     path('', views.home, name="home"),
     path('', include("allauth.urls")),
     path('', include('feedback.urls')),
     path('forum/', include('Forum.urls')),
+    path('chat/', include('chat.urls')),
     path('', include('Progress.urls')),
     path('', include('Challenge.urls')),
     path('', include('issues.urls')),
+    path('api/', include('httpcat.urls')),
 ]
 
 if settings.DEBUG:

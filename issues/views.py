@@ -7,10 +7,9 @@ def get_github_issues(request):
     headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
     try:
         response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Эта строка вызовет исключение для HTTP ошибок
+        response.raise_for_status()
         issues = response.json()
     except requests.exceptions.RequestException as e:
-        # Обработайте исключение и передайте его в шаблон для отображения пользователю
         issues = []
         error_message = str(e)
         return render(request, 'issues/issues_list.html', {'issues': issues, 'error': error_message})

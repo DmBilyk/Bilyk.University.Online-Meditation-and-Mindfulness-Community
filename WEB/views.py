@@ -11,12 +11,26 @@ from .decorators import custom_login_required
 from .forms import ProfileForm
 from .models import Profile
 from .models import Video_Youtube
+from django.shortcuts import redirect
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+
+
+@api_view(['GET'])
+def about(request):
+    """
+    Handles the about page request.
+    """
+    return render(request, 'about.html')
+
+
+
+@api_view(['GET'])
 def faq(request):
     """
     Handles the FAQ page request.
@@ -47,7 +61,7 @@ def profile_view(request):
         raise
 
 
-@api_view(['POST'])
+
 @custom_login_required
 def edit_profile(request):
     """

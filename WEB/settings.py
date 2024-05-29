@@ -19,6 +19,10 @@ import environ
 import google.auth
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
+from decouple import config
+
+LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,7 +55,9 @@ INSTALLED_APPS = [
     'django_cron',
     'issues',
     'drf_yasg',
+    'httpcat',
     'allauth',
+    'chat',
     'allauth.account',
     'storages',
     'allauth.socialaccount',
@@ -157,6 +163,12 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_UID_FIELD = 'google_id'
 
+
+
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -188,6 +200,14 @@ USE_TZ = True
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

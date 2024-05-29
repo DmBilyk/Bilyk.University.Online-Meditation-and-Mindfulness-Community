@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with OpenAI</title>
+
+        <meta content="Welcome to our online meditation and mindfulness community! Join us to find inner peace and tranquility through guided meditation sessions and mindfulness practices."
+          name="description">
+    <meta content="online meditation, mindfulness community, guided meditation, inner peace, tranquility"
+          name="keywords">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/meditation.css' %}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .chat-box { width: 300px; margin: 50px auto; border: 1px solid #ccc; padding: 10px; }
+        .messages { height: 200px; overflow-y: scroll; border-bottom: 1px solid #ccc; margin-bottom: 10px; }
+        .message { padding: 5px; }
+        .user { text-align: right; }
+        .bot { text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="chat-box">
+        <div class="messages"></div>
+        <textarea id="message-input" rows="3" style="width: 100%;"></textarea>
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#send-button').click(function() {
+                const message = $('#message-input').val();
+                if (message.trim() === '') return;
+
+                $('.messages').append('<div class="message user">' + message + '</div>');
+                $('#message-input').val('');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "get_openai_response" %}',
+                    data: {
+                        'message': message,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        $('.messages').append('<div class="message bot">' + response.response + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
