@@ -6,14 +6,18 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.core.cache import cache
 from datetime import timedelta
+from WEB.decorators import custom_login_required
 
 openai.api_key = settings.LEPTON_API_TOKEN
 
 VALID_KEYWORDS = ['meditation', 'mindfulness', 'zen', 'relaxation', 'breathing', 'yoga','contemplation', 'reflection', 'introspection', 'tranquility', 'calmness', 'focus', 'awareness', 'peace', 'serenity', 'stress', 'anxiety', 'depression', 'mental health', 'well-being','inhalation', 'exhalation', 'respiration', 'pranayama', 'breathe', 'lungs', 'oxygenation','harmony', 'simplicity', 'peace', 'stillness', 'balance', 'enlightenment', 'clarity']
 
+@custom_login_required
 def chat_page(request):
     return render(request, 'chat/chat_page.html')
 
+
+@custom_login_required
 @csrf_exempt
 def get_openai_response(request):
     if request.method == 'POST':

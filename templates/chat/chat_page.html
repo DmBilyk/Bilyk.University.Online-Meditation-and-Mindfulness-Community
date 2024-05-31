@@ -28,7 +28,117 @@
 
 
     <style>
-                @media (min-width: 992px) {
+        @import 'https://fonts.googleapis.com/css?family=Raleway';
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'Raleway', sans-serif; /* Added font-family */
+        }
+
+header h1 {
+    color: #AAA;
+    font-size: 40px;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+header span {
+    color: #222;
+}
+
+footer span {
+    color: #AAA;
+}
+
+
+    .copyright-text p {
+        margin: 0;
+        font-size: 14px;
+        color: #878787;
+    }
+
+    .copyright-text p a {
+        color: #009688;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #f8f9fa; /* Adjust as needed */
+        padding: 20px 0; /* Adjust padding as needed */
+        text-align: center;
+    }
+
+
+/* Top and Bottom borders go out */
+.teal .borderYtoX a:before,
+.teal .borderYtoX a:after {
+    opacity: 0.5;
+    height: 100%;
+    width: 2px;
+    content: '';
+    background: #FFF;
+    transition: all 0.3s;
+    position: absolute;
+}
+
+.teal .borderYtoX a:before {
+    left: 0px;
+    top: 100px;
+}
+
+.teal .borderYtoX a:after {
+    right: 0px;
+    bottom: 100px;
+}
+
+    .teal .borderYtoX a:hover:before,
+    .teal .borderYtoX a:hover:after {
+        opacity: 1;
+        height: 2px;
+        width: 100%;
+    }
+
+
+
+
+
+    #navbar {
+        text-align: center;
+        padding: 20px 40px;
+        margin: 0 auto;
+    }
+
+
+
+
+
+    /* Adaptation for smaller screens */
+    @media only screen and (max-width: 768px) {
+        .profile-card {
+            max-width: 90%;
+        }
+    }
+
+
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+
+        @media (min-width: 992px) {
             .navbar {
                 position: absolute;
                 width: 100%;
@@ -50,10 +160,6 @@
                 text-transform: uppercase;
             }
         }
-
-
-
-
     </style>
 
 </head>
@@ -66,7 +172,7 @@
 
 <div class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Calm<span> - </span>Connections</a>
+        <a class="navbar-brand" href="/">Calm - Connections</a>
         <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,7 +182,7 @@
                 <a class="nav-item nav-link" href="/">Home</a>
                 <a class="nav-item nav-link" href="/forum/">Forum</a>
                 <a class="nav-item nav-link" href="/guided-meditation/">Meditation</a>
-                <a class="nav-item nav-link active" href="/calendar/">Progress</a>
+                <a class="nav-item nav-link" href="/calendar/">Progress</a>
                 <a class="nav-item nav-link" class="nav-item nav-link" href="/feedback/">Feedback</a>
                 <a class="nav-item nav-link" class="nav-item nav-link" href="/faq/">FAQ</a>
             </div>
@@ -105,28 +211,39 @@
 
 
     <script>
-        $(document).ready(function() {
-            $('.message-submit').click(function() {
-                const message = $('.message-input').val();
-                if ($.trim(message) === '') return;
 
-                $('.messages-content').append('<div class="message message-personal new">' + message + '</div>');
-                $('.message-input').val('');
 
-                $.ajax({
-                    type: 'POST',
-                    url: '{% url "get_openai_response" %}',
-                    data: {
-                        'message': message,
-                        'csrfmiddlewaretoken': '{{ csrf_token }}'
-                    },
-                    success: function(response) {
-                        $('.messages-content').append('<div class="message new"><figure class="avatar"><img src="https://seeklogo.com/images/C/chatgpt-logo-02AFA704B5-seeklogo.com.png" /></figure>' + response.response + '</div>');
-                    }
-                });
-            });
+
+$(document).ready(function() {
+    $('.message-submit').click(function() {
+        const message = $('.message-input').val();
+        if ($.trim(message) === '') return;
+
+        $('.messages-content').append('<div class="message message-personal new">' + message + '</div>');
+        $('.message-input').val('');
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "get_openai_response" %}',
+            data: {
+                'message': message,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                $('.messages-content').append('<div class="message new"><figure class="avatar"><img src="https://seeklogo.com/images/C/chatgpt-logo-02AFA704B5-seeklogo.com.png" /></figure>' + response.response + '</div>');
+            }
         });
+    });
+
+    $('.message-input').keypress(function(e) {
+        if (e.which == 13) {
+            $('.message-submit').click();
+            return false;    // prevent the default action (form submission)
+        }
+    });
+});
     </script>
+
 
 
 
