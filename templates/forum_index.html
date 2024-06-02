@@ -219,17 +219,17 @@
                 <span class="author">{{ item.post.user.username }}</span> - <span class="date">{{ item.post.created_at }}</span>
             </div>
             <p id="post-text">{{ item.post.message }}</p>
-            {% for response in item.responses %}
-            <div class="response">
-                <p id="response-text">{{ response.message }}</p>
-                <p>Response by {{ response.reply_to.username }} on {{ response.created_at }}</p>
-            </div>
-            {% endfor %}
-            <form action="{% url 'reply_post' item.post.id %}" id="Response_Form" method="post">
-                {% csrf_token %}
-                <textarea name="message" required></textarea>
-                <a href="#" id="submit_response">Replay</a>
-            </form>
+                {% for response in item.responses %}
+                <div class="response">
+                    <p id="response-text">{{ response.message }}</p>
+                    <p>Response by {{ response.user.username }} on {{ response.created_at }}</p>  <!-- Display the username here -->
+                </div>
+                {% endfor %}
+                <form action="{% url 'reply_post' item.post.id %}" id="Response_Form_{{ item.post.id }}" method="post">
+                    {% csrf_token %}
+                    <textarea name="message" required></textarea>
+                    <a href="#" class="submit_response" id="submit_response_{{ item.post.id }}">Replay</a>
+                </form>
 
         </li>
         {% endfor %}
@@ -319,10 +319,13 @@
 
 
 <script>
-    document.getElementById("submit_response").addEventListener("click", function (event) {
+    document.querySelectorAll(".submit_response").forEach(function(submitButton) {
+    submitButton.addEventListener("click", function (event) {
         event.preventDefault();
-        document.getElementById("Response_Form").submit();
+        var formId = "Response_Form_" + this.id.split("_")[2];
+        document.getElementById(formId).submit();
     });
+});
 </script>
 
 <script src="{% static 'lib/easing/easing.min.js' %}"></script>

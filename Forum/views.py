@@ -61,6 +61,7 @@ def create_post(request):
 
 @custom_login_required
 def reply_post(request, post_id):
+
     """
     Handles the request to reply to a post.
 
@@ -76,10 +77,19 @@ def reply_post(request, post_id):
         if form.is_valid():
             reply_to_id = request.POST.get('reply_to_id')
             reply_to = User.objects.get(pk=reply_to_id) if reply_to_id else None
-            Response(parent_post=Post.objects.get(pk=post_id), message=form.cleaned_data['message'],
-                     reply_to=reply_to).save()
+            Response(parent_post=Post.objects.get(pk=post_id), user=request.user, message=form.cleaned_data['message'],
+                     reply_to=reply_to).save()  # Set the user field here
             return redirect('forum_index')
         return render(request, 'reply_post.html', {'form': form, 'parent_post': Post.objects.get(pk=post_id)})
     except Exception as e:
         logger.error(e)
         return redirect('forum_index')
+
+
+
+
+
+
+
+
+
