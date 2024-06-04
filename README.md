@@ -83,7 +83,6 @@ management, and holistic wellness.-Coming soon.
 
 • Event Calendar:Stay up-to-date on upcoming meditation sessions, workshops, and community events to plan your
 
-• Coming soon.
 
 • Feedback System:Provide feedback on your meditation experience, suggest improvements, and share your thoughts with
 the community.
