@@ -35,7 +35,15 @@ SECRET_KEY = 'django-insecure-uy+4)+m@8mh+qck@&v!yr)8%lls6n=#wi4+5(7)c87dsp02-j$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
+
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
+
+
+if os.environ.get('PORT'):
+    runserver_default_port = os.environ.get('PORT', '8000')
+
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
@@ -240,6 +248,9 @@ STATICFILES_DIRS = [STATIC_DIR]
 DJANGO_CRON_CLASSES = [
     'WEB.cron.EventNotificationCronJob',
 ]
+
+
+
 
 DEFAULT_FILE_STORAGE = 'WEB.gcloud.GoogleCloudMediaFileStorage'
 GS_PROJECT_ID = 'swift-reef-420509'
