@@ -44,17 +44,6 @@ def join_challenge(request, challenge_id):
 
 
 def challenge_detail(request, challenge_id):
-    """
-    Handles the challenge detail request.
-
-    Args:
-        request (HttpRequest): The request object.
-        challenge_id (int): The ID of the challenge to view.
-
-    Returns:
-        HttpResponse: The response object.
-    """
-
     challenge = get_object_or_404(WeeklyChallenge, id=challenge_id)
     user_challenge = get_object_or_404(UserChallenge, user=request.user, challenge=challenge)
 
@@ -72,6 +61,15 @@ def challenge_detail(request, challenge_id):
 
     successful_days = user_challenge.completed_tasks.count()
 
+    total_tasks = challenge.tasks.count()
+    completed_tasks = user_challenge.completed_tasks.count()
+
+    # Calculate the duration of the challenge
+    challenge_duration = (challenge.end_date - challenge.start_date).days
+    is_challenge_over = current_day > challenge_duration
+
+    is_completed = completed_tasks == total_tasks and is_challenge_over
+
     return render(request, 'challenges/challenge_detail.html',
                   {'challenge': challenge, 'user_challenge': user_challenge, 'current_day_tasks': current_day_tasks,
-                   'successful_days': successful_days})
+                   'successful_days': successful_days, 'is_completed': is_completed})

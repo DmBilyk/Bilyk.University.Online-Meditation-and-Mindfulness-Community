@@ -15,6 +15,7 @@ from WEB.models import User
 from .forms import EventForm, TaskForm
 from .models import Event
 from .models import Task
+from django.http import JsonResponse
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -209,8 +210,6 @@ def add_task(request):
     except Exception as e:
         logger.error(e)
         return render(request, 'calendar/add_task.html', {'form': form})
-
-
 @login_required
 def complete_task(request, task_id):
     """
@@ -225,17 +224,12 @@ def complete_task(request, task_id):
     """
     try:
         task = Task.objects.get(pk=task_id)
-        if task.completed:
-            task.completed = False
-        else:
-            task.completed = True
+        task.completed = not task.completed
         task.save()
-        return redirect('calendar')
-
+        return JsonResponse({'status': 'success'})
     except Exception as e:
         logger.error(e)
-        return redirect('calendar')
-
+        return JsonResponse({'status': 'error'})
 
 @custom_login_required
 def delete_task(request, task_id):

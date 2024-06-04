@@ -231,9 +231,10 @@
     </form>
     <p>Successful days: {{ successful_days }}</p>
 
-    {% if user_challenge.is_completed %}
+    {% if is_completed %}
     <p>Congratulations! You have completed the challenge.</p>
     {% endif %}
+
 </div>
 
 

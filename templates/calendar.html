@@ -225,8 +225,7 @@
         {% for task in tasks %}
         <li>
             {{ task.description }}
-            <input %} %}checked{% endif if
-                   onclick="window.location.href='{% url 'complete_task' task.id %}'" task.completed type="checkbox" {%>
+            <input type="checkbox" onclick="completeTask({{ task.id }})" {% if task.completed %}checked{% endif %}>
             <span class="delete-btn" onclick="window.location.href='{% url 'delete_task' task.id %}'">Delete</span>
         </li>
         {% endfor %}
@@ -378,5 +377,18 @@
 
 </script>
 
+<script>
+function completeTask(taskId) {
+    $.ajax({
+        url: '/complete_task/' + taskId + '/',
+        method: 'GET',
+        success: function() {
+            location.reload();
+        }
+    });
+}
+</script>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </html>
