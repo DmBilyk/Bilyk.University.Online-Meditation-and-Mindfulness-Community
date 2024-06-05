@@ -41,8 +41,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 
-if os.environ.get('PORT'):
-    runserver_default_port = os.environ.get('PORT', '8000')
 
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
