@@ -15,7 +15,7 @@ settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 
-# Get the default port from environment variable or default to 8000
+
 runserver_default_port = os.environ.get('PORT', '8000')
 
 application = get_wsgi_application()
