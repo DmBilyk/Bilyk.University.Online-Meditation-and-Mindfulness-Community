@@ -16,6 +16,7 @@ from .forms import EventForm, TaskForm
 from .models import Event
 from .models import Task
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -143,7 +144,7 @@ def manage_events(request):
     events = Event.objects.filter(user=request.user)
     return render(request, 'calendar/manage_events.html', {'events': events, 'form': EventForm()})
 
-
+@api_view(['GET'])
 @custom_login_required
 def calendar_view(request):
     """

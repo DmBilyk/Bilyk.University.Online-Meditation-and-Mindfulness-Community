@@ -6,12 +6,13 @@ from django.shortcuts import render, redirect
 from WEB.decorators import custom_login_required
 from .forms import PostForm
 from .models import Post, Response
+from rest_framework.decorators import api_view
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
+@api_view(['GET'])
 @custom_login_required
 def forum_index(request):
     """
@@ -53,7 +54,7 @@ def create_post(request):
                 new_post.parent_post = Post.objects.get(pk=parent_post_id)
             new_post.save()
             return redirect('forum_index')
-        return render(request, 'create_post.html', {'form': form, 'parent_post_id': request.GET.get('parent_post_id')})
+        return render(request, 'forum/create_post.html', {'form': form, 'parent_post_id': request.GET.get('parent_post_id')})
     except Exception as e:
         logger.error(e)
         return redirect('forum_index')

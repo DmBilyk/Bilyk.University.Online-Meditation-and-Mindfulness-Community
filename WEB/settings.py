@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_cron',
+    'notifications',
     'issues',
     'drf_yasg',
     'httpcat',
