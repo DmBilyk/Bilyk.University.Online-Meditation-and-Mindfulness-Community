@@ -33,15 +33,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-uy+4)+m@8mh+qck@&v!yr)8%lls6n=#wi4+5(7)c87dsp02-j$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 
 
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
-if os.environ.get('PORT'):
-    runserver_default_port = os.environ.get('PORT', '8000')
+
+
+SECURE_SSL_REDIRECT = False
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
