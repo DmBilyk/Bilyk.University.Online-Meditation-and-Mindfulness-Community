@@ -16,4 +16,5 @@ settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 
 
+
 application = get_wsgi_application()

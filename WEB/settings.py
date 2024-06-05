@@ -42,7 +42,6 @@ ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 
 
-
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
 # Application definition
@@ -227,8 +226,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Define the directory where your static files are located
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR]
-
-
 
 
 
