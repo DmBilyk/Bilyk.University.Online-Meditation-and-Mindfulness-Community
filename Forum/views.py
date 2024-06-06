@@ -7,6 +7,7 @@ from WEB.decorators import custom_login_required
 from .forms import PostForm
 from .models import Post, Response
 from rest_framework.decorators import api_view
+from django.core.paginator import Paginator
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -26,8 +27,13 @@ def forum_index(request):
     """
 
     try:
-        posts_with_responses = [{'post': post, 'responses': post.responses.all()} for post in Post.objects.all()]
-        return render(request, 'forum_index.html', {'posts_with_responses': posts_with_responses})
+        posts = Post.objects.all().order_by('-created_at')
+        paginator = Paginator(posts, 25)
+
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        return render(request, 'forum_index.html', {'page_obj': page_obj})
     except Exception as e:
         logger.error(e)
         return redirect('forum_index')
@@ -79,7 +85,7 @@ def reply_post(request, post_id):
             reply_to_id = request.POST.get('reply_to_id')
             reply_to = User.objects.get(pk=reply_to_id) if reply_to_id else None
             Response(parent_post=Post.objects.get(pk=post_id), user=request.user, message=form.cleaned_data['message'],
-                     reply_to=reply_to).save()  # Set the user field here
+                     reply_to=reply_to).save()
             return redirect('forum_index')
         return render(request, 'reply_post.html', {'form': form, 'parent_post': Post.objects.get(pk=post_id)})
     except Exception as e:

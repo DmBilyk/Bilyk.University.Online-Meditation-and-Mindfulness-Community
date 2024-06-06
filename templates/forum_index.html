@@ -157,6 +157,18 @@
             border-radius: 5px;
 
         }
+a:hover,
+a:active,
+a:focus {
+    color: #8c7ed2;
+    outline: none;
+    text-decoration: none;
+}
+
+a {
+    color: #585183;
+    transition: .3s;
+}
 
     </style>
 </head>
@@ -216,29 +228,37 @@
 
 {% csrf_token %}
 <div class="forum-container">
-
     <ul>
-        {% for item in posts_with_responses %}
-        <li class="post" id="post-{{ item.post.id }}">
-            <div class="post-header">
-                <span class="author">{{ item.post.user.username }}</span> - <span class="date">{{ item.post.created_at }}</span>
-            </div>
-            <p id="post-text">{{ item.post.message }}</p>
-                {% for response in item.responses %}
-                <div class="response">
-                    <p id="response-text">{{ response.message }}</p>
-                    <p>Response by {{ response.user.username }} on {{ response.created_at }}</p>  <!-- Display the username here -->
+        {% for post in page_obj %}
+            <li class="post" id="post-{{ post.id }}">
+                <div class="post-header">
+                    <span class="author">{{ post.user.username }}</span> - <span class="date">{{ post.created_at }}</span>
                 </div>
+                <p id="post-text">{{ post.message }}</p>
+                {% for response in post.responses.all %}
+                    <div class="response">
+                        <p id="response-text">{{ response.message }}</p>
+                        <p>Response by {{ response.user.username }} on {{ response.created_at }}</p>
+                    </div>
                 {% endfor %}
-                <form action="{% url 'reply_post' item.post.id %}" id="Response_Form_{{ item.post.id }}" method="post">
+                <form action="{% url 'reply_post' post.id %}" id="Response_Form_{{ post.id }}" method="post">
                     {% csrf_token %}
                     <textarea name="message" required></textarea>
-                    <a href="#" class="submit_response" id="submit_response_{{ item.post.id }}">Replay</a>
+                    <a href="#" class="submit_response" id="submit_response_{{ post.id }}">Reply</a>
                 </form>
-
-        </li>
+            </li>
         {% endfor %}
     </ul>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+</div>
 
 
     <!-- Create Post Section -->

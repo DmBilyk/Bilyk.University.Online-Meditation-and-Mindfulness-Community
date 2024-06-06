@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os
-
+from opentelemetry.instrumentation.wsgi import OpenTelemetryMiddleware
 from django.core.wsgi import get_wsgi_application
 
 settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os.environ else 'WEB.settings'
@@ -16,5 +16,9 @@ settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 
 
-
 application = get_wsgi_application()
+
+application = OpenTelemetryMiddleware(application)
+
+runserver_default_port = os.environ.get('PORT', '8000')
+

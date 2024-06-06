@@ -19,6 +19,13 @@ import google.auth
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from decouple import config
+from opentelemetry.instrumentation.django import DjangoInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+from opentelemetry import trace
 
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
 
@@ -29,8 +36,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uy+4)+m@8mh+qck@&v!yr)8%lls6n=#wi4+5(7)c87dsp02-j$'
+
+load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+environ.Env.read_env()
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,12 +54,29 @@ ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 
 
+
+
 SECURE_SSL_REDIRECT = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
+
+
+if os.environ.get('PORT'):
+    runserver_default_port = os.environ.get('PORT', '8000')
+
 # Application definition
+
+exporter = AzureMonitorTraceExporter(connection_string=os.getenv('INSIGHT_CONNECTION_STRING'))
+
+tracer_provider = TracerProvider(resource=Resource.create({}),)
+tracer_provider.add_span_processor(BatchSpanProcessor(exporter))
+
+DjangoInstrumentor().instrument()
+LoggingInstrumentor().instrument()
+trace.set_tracer_provider(tracer_provider)
+
 
 INSTALLED_APPS = [
     'WEB',
@@ -85,6 +114,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'WEB.middleware.TracingMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
