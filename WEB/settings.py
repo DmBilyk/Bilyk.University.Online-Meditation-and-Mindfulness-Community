@@ -26,6 +26,12 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
 from opentelemetry import trace
+from django.conf import settings
+
+settings.configure(
+    ROOT_URLCONF=__name__,
+)
+
 
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
 
@@ -53,6 +59,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 
+if os.environ.get('PORT'):
+    runserver_default_port = os.environ.get('PORT', '8000')
 
 
 SECURE_SSL_REDIRECT = False
