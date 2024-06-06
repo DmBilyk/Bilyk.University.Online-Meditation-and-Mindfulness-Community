@@ -128,3 +128,5 @@ class Video_Youtube(models.Model):
 
     def __str__(self):
         return self.title
+
+

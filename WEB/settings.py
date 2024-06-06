@@ -21,8 +21,6 @@ from google.auth.transport.requests import Request
 from decouple import config
 
 
-
-
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
 
 
@@ -60,6 +58,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'WEB',

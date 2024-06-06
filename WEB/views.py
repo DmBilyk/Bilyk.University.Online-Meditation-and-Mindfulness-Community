@@ -1,17 +1,20 @@
 import logging
 import re
-
+from django.dispatch import receiver
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-
+from django.contrib.auth.signals import user_logged_in
 from WEB.models import UserProfile
 from .decorators import custom_login_required
 from .forms import ProfileForm
 from .models import Profile
 from .models import Video_Youtube
 from django.shortcuts import redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 
 # Set up logging
@@ -126,3 +129,24 @@ def get_video(request, pk: int):
     video = get_object_or_404(Video_Youtube, id=pk)
     video_id = get_video_id(video.youtube_link)
     return render(request, "video/video.html", {"video": video, "video_id": video_id})
+
+
+@login_required
+def send_email(request, subject, message, user_email=None):
+    user = request.user
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = [user.email]
+    if user_email:
+        recipient_list[0] = user_email
+    send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+    return redirect('home')
+
+
+@receiver(user_logged_in)
+def send_welcome_email_if_google_auth(sender, request, user, **kwargs):
+    if user.socialaccount_set.filter(provider='google').exists():
+        if not hasattr(user, '_welcome_email_sent'):
+            subject = 'Welcome to Calm-Connections!'
+            message = f'Hello {user.username}, thanks for joining our community!'
+            send_email(request, subject, message)
+            user._welcome_email_sent = True

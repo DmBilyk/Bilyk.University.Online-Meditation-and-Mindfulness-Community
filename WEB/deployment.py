@@ -22,7 +22,6 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = 'WEB.urls'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
