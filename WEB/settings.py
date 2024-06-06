@@ -26,19 +26,23 @@ from decouple import config
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
 
 
+
+if os.environ.get('PORT'):
+    runserver_default_port = os.environ.get('PORT', '8000')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+if os.environ.get('PORT'):
+    runserver_default_port = os.environ.get('PORT', '8000')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-
-load_dotenv()
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-uy+4)+m@8mh+qck@&v!yr)8%lls6n=#wi4+5(7)c87dsp02-j$'
-
-environ.Env.read_env()
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,21 +53,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['calm-connections.azurewebsites.net', '127.0.0.1']
 
 
-if os.environ.get('PORT'):
-    runserver_default_port = os.environ.get('PORT', '8000')
-
 
 SECURE_SSL_REDIRECT = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
-
-
-
-
-
-
+# Application definition
 
 INSTALLED_APPS = [
     'WEB',

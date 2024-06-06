@@ -21,6 +21,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+ROOT_URLCONF = 'WEB.urls'
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 conn_str = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
