@@ -25,6 +25,10 @@ logger = logging.getLogger(__name__)
 
 
 
+
+
+
+
 @api_view(['GET'])
 def about(request):
     """

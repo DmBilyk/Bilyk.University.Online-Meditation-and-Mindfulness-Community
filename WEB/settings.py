@@ -19,16 +19,8 @@ import google.auth
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from decouple import config
-from opentelemetry.instrumentation.django import DjangoInstrumentor
-from opentelemetry.instrumentation.logging import LoggingInstrumentor
-from opentelemetry.sdk.resources import Resource
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
-from opentelemetry import trace
 
 
-ROOT_URLCONF = 'WEB.urls'
 
 
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
@@ -70,16 +62,7 @@ CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
 
 
-# Application definition
 
-exporter = AzureMonitorTraceExporter(connection_string=os.getenv('INSIGHT_CONNECTION_STRING'))
-
-tracer_provider = TracerProvider(resource=Resource.create({}),)
-tracer_provider.add_span_processor(BatchSpanProcessor(exporter))
-
-DjangoInstrumentor().instrument()
-LoggingInstrumentor().instrument()
-trace.set_tracer_provider(tracer_provider)
 
 
 INSTALLED_APPS = [
@@ -118,7 +101,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'WEB.middleware.TracingMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
