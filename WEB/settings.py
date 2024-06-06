@@ -19,6 +19,13 @@ import google.auth
 from dotenv import load_dotenv
 from google.auth.transport.requests import Request
 from decouple import config
+from opentelemetry.instrumentation.django import DjangoInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
+from opentelemetry import trace
 
 
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
@@ -27,6 +34,16 @@ LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
 
 if os.environ.get('PORT'):
     runserver_default_port = os.environ.get('PORT', '8000')
+
+load_dotenv()
+exporter = AzureMonitorTraceExporter(connection_string=os.getenv('INSIGHT_CONNECTION_STRING'))
+
+tracer_provider = TracerProvider(resource=Resource.create({}),)
+tracer_provider.add_span_processor(BatchSpanProcessor(exporter))
+
+DjangoInstrumentor().instrument()
+LoggingInstrumentor().instrument()
+trace.set_tracer_provider(tracer_provider)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,6 +75,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
 # Application definition
+
+
 
 
 
@@ -96,6 +115,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'WEB.middleware.TracingMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

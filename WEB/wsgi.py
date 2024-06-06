@@ -19,6 +19,8 @@ runserver_default_port = os.environ.get('PORT', '8000')
 
 application = get_wsgi_application()
 
+application = OpenTelemetryMiddleware(application)
+
 
 
 
