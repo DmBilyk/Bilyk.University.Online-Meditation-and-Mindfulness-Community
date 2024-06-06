@@ -14,8 +14,6 @@ from django.core.wsgi import get_wsgi_application
 settings_module = 'WEB.deployment' if 'calm-connections.azurewebsites.net' in os.environ else 'WEB.settings'
 
 
-runserver_default_port = os.environ.get('PORT', '8000')
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WEB.settings')
 
 
