@@ -26,11 +26,9 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
 from opentelemetry import trace
-from django.conf import settings
 
-settings.configure(
-    ROOT_URLCONF=__name__,
-)
+
+ROOT_URLCONF = 'WEB.urls'
 
 
 LEPTON_API_TOKEN = config('LEPTON_API_TOKEN')
