@@ -63,8 +63,7 @@ CSRF_TRUSTED_ORIGINS = ['https://calm-connections.azurewebsites.net']
 
 
 
-if os.environ.get('PORT'):
-    runserver_default_port = os.environ.get('PORT', '8000')
+
 
 # Application definition
 

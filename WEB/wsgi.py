@@ -22,4 +22,4 @@ application = OpenTelemetryMiddleware(application)
 
 
 
-runserver_default_port = os.environ.get('PORT', '8000')
+
