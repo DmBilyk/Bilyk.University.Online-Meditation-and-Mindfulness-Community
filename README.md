@@ -234,7 +234,10 @@ the community.
 - The Forum application is responsible for the forum where users can communicate with each other.
 - The Progress application is responsible for the user's progress in meditation.
 
-
+## Anti-Lab 2
+- Mariia Husak 
+- https://github.com/MariaHusak/Husak.University.Google-Calendar
+- https://github.com/MariaHusak/Bilyk.University.Online-Meditation-and-Mindfulness-Community/pull/1
 
 
 
